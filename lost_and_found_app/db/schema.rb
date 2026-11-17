@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_11_17_082442) do
+ActiveRecord::Schema[7.1].define(version: 2026_11_17_141655) do
   create_table "claims", force: :cascade do |t|
     t.integer "facility_id", null: false
     t.integer "user_id", null: false
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_11_17_082442) do
     t.string "title", null: false
     t.string "description", null: false
     t.integer "category", null: false
+    t.integer "status", null: false
     t.datetime "date_found", null: false
     t.integer "facility_id", null: false
     t.datetime "created_at", null: false
@@ -54,6 +55,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_11_17_082442) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["facility_id"], name: "index_users_on_facility_id"
+    t.check_constraint "(role = 1 AND facility_id IS NOT NULL) OR (role = 0 AND facility_id IS NULL)", name: "role_check_for_user"
   end
 
   add_foreign_key "claims", "facilities"
