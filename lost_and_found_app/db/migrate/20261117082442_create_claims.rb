@@ -1,6 +1,7 @@
 class CreateClaims < ActiveRecord::Migration[7.1]
   def change
     create_table :claims do |t|
+      t.references :facility, foreign_key: true, null:false
       t.references :user, foreign_key: true, null:false
       t.references :item, foreign_key: true, null:false
       t.integer :status, null:false

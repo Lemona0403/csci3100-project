@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema[7.1].define(version: 2026_11_17_082442) do
   create_table "claims", force: :cascade do |t|
+    t.integer "facility_id", null: false
     t.integer "user_id", null: false
     t.integer "item_id", null: false
     t.integer "status", null: false
@@ -19,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_11_17_082442) do
     t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["facility_id"], name: "index_claims_on_facility_id"
     t.index ["item_id"], name: "index_claims_on_item_id"
     t.index ["user_id"], name: "index_claims_on_user_id"
   end
@@ -54,6 +56,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_11_17_082442) do
     t.index ["facility_id"], name: "index_users_on_facility_id"
   end
 
+  add_foreign_key "claims", "facilities"
   add_foreign_key "claims", "items"
   add_foreign_key "claims", "users"
   add_foreign_key "items", "facilities"
