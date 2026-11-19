@@ -1,5 +1,9 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :require_login, only: %i[ new edit create update destroy ]
+  before_action :require_login, only: %i[ new edit create update destroy ]
+  #lamdba function to check item have the same id with the staff
+  before_action ->{ ensure_same_facility(@item)}, only: %i[ new edit create update destroy]
 
   # GET /items or /items.json
   def index
@@ -22,6 +26,8 @@ class ItemsController < ApplicationController
   # POST /items or /items.json
   def create
     @item = Item.new(item_params)
+    @item.facility_id = current_user.facility_id
+    @item.status = :available
 
     respond_to do |format|
       if @item.save
@@ -36,6 +42,7 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1 or /items/1.json
   def update
+    #update of item is triggered by update of change
     respond_to do |format|
       if @item.update(item_params)
         format.html { redirect_to @item, notice: "Item was successfully updated.", status: :see_other }
