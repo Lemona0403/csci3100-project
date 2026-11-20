@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_11_17_141655) do
+ActiveRecord::Schema[7.1].define(version: 2026_11_20_054854) do
   create_table "claims", force: :cascade do |t|
     t.integer "facility_id", null: false
     t.integer "user_id", null: false
@@ -47,14 +47,18 @@ ActiveRecord::Schema[7.1].define(version: 2026_11_17_141655) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.string "password", null: false
     t.string "name", null: false
     t.integer "role", null: false
     t.integer "facility_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "encrypted_password", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["facility_id"], name: "index_users_on_facility_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.check_constraint "(role = 1 AND facility_id IS NOT NULL) OR (role = 0 AND facility_id IS NULL)", name: "role_check_for_user"
   end
 
