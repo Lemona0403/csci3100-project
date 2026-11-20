@@ -8,3 +8,7 @@
 
   <%= button_to "Destroy this item", @item, method: :delete %>
 </div>
+
+<% if user_signed_in? && current_user.general? && @item.available? %>
+  <%= link_to "Claim this item", new_item_claim_path(@item) %>
+<% end %>

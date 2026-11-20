@@ -22,8 +22,10 @@
   </div>
 
   <div>
-    <%= form.label :category, style: "display: block" %>
-    <%= form.number_field :category %>
+    <%= form.select :category, 
+           Item.categories.keys.map { |category| [category.humanize, category] }, 
+           { include_blank: "Select a category" }, 
+           { required: true } %>
   </div>
 
   <div>

@@ -12,5 +12,18 @@
 
   <body>
     <%= yield %>
+      <% if alert %>
+        <p> <%= alert %></p>
+      <% end %>
+    <% if user_signed_in? %>
+      <p>Signed in as <%= current_user.name %> (<%= current_user.role %>)</p>
+
+      <% if current_user.staff? %>
+        <p>Facility: <%= current_user.facility&.name %></p>
+      <% end %>
+      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+    <% elsif !devise_controller? %>
+        <%= link_to "Log in", new_user_session_path %>
+    <% end %>
   </body>
 </html>
