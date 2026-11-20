@@ -14,11 +14,8 @@ class FacilitiesTest < ApplicationSystemTestCase
     visit facilities_url
     click_on "New facility"
 
-    fill_in "Id", with: @facility.id
-    fill_in "Int", with: @facility.int
-    fill_in "Location", with: @facility.location
-    fill_in "Name", with: @facility.name
-    fill_in "String", with: @facility.string
+    fill_in "Location", with: "North campus"
+    fill_in "Name", with: "North Library"
     click_on "Create Facility"
 
     assert_text "Facility was successfully created"
@@ -29,11 +26,8 @@ class FacilitiesTest < ApplicationSystemTestCase
     visit facility_url(@facility)
     click_on "Edit this facility", match: :first
 
-    fill_in "Id", with: @facility.id
-    fill_in "Int", with: @facility.int
-    fill_in "Location", with: @facility.location
+    fill_in "Location", with: "Updated location"
     fill_in "Name", with: @facility.name
-    fill_in "String", with: @facility.string
     click_on "Update Facility"
 
     assert_text "Facility was successfully updated"

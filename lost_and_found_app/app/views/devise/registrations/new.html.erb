@@ -7,7 +7,25 @@
     <p><%= f.label :email %></p>
     <p><%= f.email_field :email, autofocus: true, autocomplete: "email" %></p>
   </div>
+  
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true %>
+  </div>
 
+  <div class="field">
+    <%= f.label :role %>
+    <%= f.select :role,
+        User.roles.keys.map { |role| [role.humanize, role] },
+        { include_blank: "Select role" },
+        { required: true } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :facility_id, "Facility" %>
+    <%= f.collection_select :facility_id, Facility.order(:name), :id, :name,
+        { include_blank: "Select facility" } %>
+  </div>
   <div class="field">
     <p><%= f.label :password %></p>
     <% if @minimum_password_length %>
