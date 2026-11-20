@@ -3,6 +3,7 @@ require "test_helper"
 class ItemsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @item = items(:one)
+    sign_in users(:staff) # Sign in as a staff user for testing
   end
 
   test "should get index" do

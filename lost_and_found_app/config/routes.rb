@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :claims
-  resources :items
+  resources :items do
+    resources :claims, only: %i[new create]
+  end
+  resources :claims, only: %i[index show edit update destroy]
   resources :users
   resources :facilities
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

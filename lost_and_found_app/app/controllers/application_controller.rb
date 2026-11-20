@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[name role facility_id])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[name role facility_id])
   end
+
+  def ensure_same_facility(record)
+    unless current_user&.staff? && record&.facility_id == current_user.facility_id
+      redirect_to root_path, alert: "You can only manage records at your facility."
+    end
+  end
 end

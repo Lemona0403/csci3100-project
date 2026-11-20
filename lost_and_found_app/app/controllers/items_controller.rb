@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
   before_action :require_login, only: %i[ new edit create update destroy ]
-  before_action :require_login, only: %i[ new edit create update destroy ]
+  before_action :require_staff, only: %i[ new edit create update destroy ]
   #lamdba function to check item have the same id with the staff
-  before_action ->{ ensure_same_facility(@item)}, only: %i[ new edit create update destroy]
+  before_action ->{ ensure_same_facility(@item)}, only: %i[edit update destroy]
 
   # GET /items or /items.json
   def index

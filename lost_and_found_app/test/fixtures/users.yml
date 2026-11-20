@@ -1,13 +1,20 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
-  password: MyString
-  name: MyString
-  role: 1
+  email: one@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  name: Test User One
+  role: 0
 
 two:
-  email: MyString
-  password: MyString
-  name: MyString
+  email: two@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  name: Test User Two
+  role: 0
+
+staff:
+  email: staff@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, "password") %>
+  name: Test Staff
   role: 1
+  facility: test_items

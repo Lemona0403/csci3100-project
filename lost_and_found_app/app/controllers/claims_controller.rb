@@ -35,7 +35,7 @@ class ClaimsController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     # build sets the item_id foreign key automatically (@item has many claims)
-    @claim = @item.claims.build(claim_param)
+    @claim = @item.claims.build(claim_params)
   
     @claim.user_id = current_user.id
     @claim.facility_id = @item.facility_id
