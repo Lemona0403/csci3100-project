@@ -1,12 +1,15 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @item %>
 
 <div>
-  <%= link_to "Edit this item", edit_item_path(@item) %> |
   <%= link_to "Back to items", items_path %>
 
-  <%= button_to "Destroy this item", @item, method: :delete %>
+  <% if user_signed_in? &&
+        current_user.staff? &&
+        current_user.facility_id == @item.facility_id %>
+    |
+    <%= link_to "Edit this item", edit_item_path(@item) %>
+    <%= button_to "Destroy this item", @item, method: :delete %>
+  <% end %>
 </div>
 
 <% if user_signed_in? && current_user.general? && @item.available? %>

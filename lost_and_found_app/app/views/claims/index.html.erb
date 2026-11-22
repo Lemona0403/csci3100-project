@@ -1,6 +1,4 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Claims</h1>
+<h1><%= current_user.staff? ? "Facility claims" : "My claims" %></h1>
 
 <div id="claims">
   <% @claims.each do |claim| %>

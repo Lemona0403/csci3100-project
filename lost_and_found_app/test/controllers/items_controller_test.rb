@@ -11,6 +11,16 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should redirect to sign in when logged out" do
+    sign_out :user
+
+    get items_url
+    assert_redirected_to new_user_session_url
+
+    get item_url(@item)
+    assert_redirected_to new_user_session_url
+  end
+
   test "should get new" do
     get new_item_url
     assert_response :success

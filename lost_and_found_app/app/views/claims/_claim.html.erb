@@ -1,8 +1,20 @@
 <div id="<%= dom_id claim %>">
   <p>
-    <strong>Status:</strong>
-    <%= claim.status %>
+    <strong>Item:</strong>
+    <%= link_to claim.item.title, item_path(claim.item) %>
   </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= claim.status.humanize %>
+  </p>
+
+  <% if current_user.staff? %>
+    <p>
+      <strong>Claimant:</strong>
+      <%= claim.user.name %>
+    </p>
+  <% end %>
 
   <p>
     <strong>Contact info:</strong>
@@ -14,4 +26,8 @@
     <%= claim.message %>
   </p>
 
+  <p>
+    <strong>Submitted:</strong>
+    <%= claim.created_at.strftime("%Y-%m-%d %H:%M") %>
+  </p>
 </div>

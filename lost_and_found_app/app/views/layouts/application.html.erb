@@ -11,19 +11,43 @@
   </head>
 
   <body>
-    <%= yield %>
-      <% if alert %>
-        <p> <%= alert %></p>
-      <% end %>
-    <% if user_signed_in? %>
-      <p>Signed in as <%= current_user.name %> (<%= current_user.role %>)</p>
+    <header>
+      <nav>
+        <%= link_to "Items", items_path %>
 
-      <% if current_user.staff? %>
-        <p>Facility: <%= current_user.facility&.name %></p>
-      <% end %>
-      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
-    <% elsif !devise_controller? %>
-        <%= link_to "Log in", new_user_session_path %>
+        <% if user_signed_in? %>
+          <span>
+            Signed in as <%= current_user.name %> (<%= current_user.role %>)
+          </span>
+
+          <% if current_user.staff? %>
+            <span>Facility: <%= current_user.facility&.name %></span>
+            <%= link_to "New item", new_item_path %>
+            <%= link_to "Facility claims", claims_path %>
+          <% else %>
+            <%= link_to "My claims", claims_path %>
+          <% end %>
+
+          <%= button_to "Log out",
+                destroy_user_session_path,
+                method: :delete %>
+        <% elsif !devise_controller? %>
+          <%= link_to "Log in", new_user_session_path %>
+          <%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+      </nav>
+    </header>
+
+    <% if notice.present? %>
+      <p class="notice"><%= notice %></p>
     <% end %>
+
+    <% if alert.present? %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

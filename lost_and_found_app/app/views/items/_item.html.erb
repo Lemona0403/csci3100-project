@@ -11,12 +11,21 @@
 
   <p>
     <strong>Category:</strong>
-    <%= item.category %>
+    <%= item.category.humanize %>
+  </p>
+
+  <p>
+    <strong>Status:</strong>
+    <%= item.status.humanize %>
+  </p>
+
+  <p>
+    <strong>Facility:</strong>
+    <%= item.facility.name %> — <%= item.facility.location %>
   </p>
 
   <p>
     <strong>Date found:</strong>
-    <%= item.date_found %>
+    <%= item.date_found&.strftime("%Y-%m-%d %H:%M") %>
   </p>
-
 </div>
