@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :status, presence: true
 
   def submit_claim!
-    raise "The item is not available" if claimed?
+    raise "The item is not available" unless available?
     update(status: :claim_pending)
   end
 

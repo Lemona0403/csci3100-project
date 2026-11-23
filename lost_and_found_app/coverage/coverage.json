@@ -8,9 +8,9 @@
       "Cucumber Features"
     ],
     "project_name": "Lost and found app",
-    "timestamp": "2026-11-23T15:15:48.005+08:00",
+    "timestamp": "2026-11-23T23:08:08.130+08:00",
     "root": "/home/lwk0808/csci3100-project/lost_and_found_app",
-    "commit": "e337b5679cd1036a5c500861a664d1d880962dfd",
+    "commit": "d481943c0b35ee5cf200046f0ad338712804767b",
     "primary_coverage": "line",
     "line_coverage": true,
     "branch_coverage": false,
@@ -18,12 +18,12 @@
   },
   "total": {
     "lines": {
-      "covered": 11,
-      "missed": 231,
-      "omitted": 228,
-      "total": 242,
-      "percent": 4.545454545454546,
-      "strength": 0.045454545454545456
+      "covered": 119,
+      "missed": 138,
+      "omitted": 246,
+      "total": 257,
+      "percent": 46.30350194552529,
+      "strength": 0.7704280155642024
     }
   },
   "coverage": {
@@ -93,34 +93,34 @@
         "end"
       ],
       "lines": [
-        0,
-        0,
+        1,
+        1,
         null,
-        0,
+        1,
         null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
+        1,
+        17,
         null,
         null,
-        0,
-        0,
+        1,
         0,
         null,
         null,
-        0,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
         0,
         0,
         null,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 13,
+      "lines_covered_percent": 76.92307692307692,
+      "covered_lines": 10,
+      "missed_lines": 3,
       "omitted_lines": 11,
       "total_lines": 13
     },
@@ -168,13 +168,30 @@
         "    @claim.user_id = current_user.id",
         "    @claim.facility_id = @item.facility_id",
         "    @claim.status = :pending",
-        "",
+        "    ",
+        "    #ban users submit claim for non available claim",
+        "    unless @item.available?",
+        "    respond_to do |format|",
+        "      format.html { redirect_to @item, alert: \"The item is not available\" }",
+        "      format.json { render json: { error: \"The item is not available\" }, ",
+        "      status: :unprocessable_content }",
+        "      end",
+        "      return",
+        "    end",
+        "    ",
         "    saved = false",
+        "    error_message = nil",
         "    #Set up transaction so that save fails if submit_claim! returns error",
-        "    ActiveRecord::Base.transaction do",
+        "    begin",
+        "      ActiveRecord::Base.transaction do",
         "      @claim.save!",
         "      @item.submit_claim! #item status available to claim-pending when creating new claims",
         "      saved = true",
+        "      end",
+        "    rescue StandardError => e",
+        "      #stop when either @claim.save! or @item.submit_claim! fails",
+        "      error_message = e.message",
+        "      saved = false",
         "    end",
         "",
         "    respond_to do |format|",
@@ -182,8 +199,10 @@
         "        format.html { redirect_to @claim, notice: \"Claim was successfully created.\" }",
         "        format.json { render :show, status: :created, location: @claim }",
         "      else",
+        "        flash.now[:alert] = error_message if error_message",
         "        format.html { render :new, status: :unprocessable_content }",
-        "        format.json { render json: @claim.errors, status: :unprocessable_content }",
+        "        format.json { render json: { errors: @claim.errors, message: error_message }, ",
+        "        status: :unprocessable_content }",
         "      end",
         "    end",
         "",
@@ -194,27 +213,36 @@
         "    #get the status user want to change",
         "    target_status = claim_params[:status]",
         "    updated = false",
-        "    ActiveRecord::Base.transaction do",
-        "      case target_status",
-        "      when \"approved\"",
-        "        #approve claim, then item status become claimed",
-        "        @claim.approve!",
-        "        @claim.item.approve_claim!",
-        "      when \"rejected\"",
-        "        #reject claim, then item status become available",
-        "        @claim.reject!",
-        "        @claim.item.reject_claim!",
-        "      else",
-        "        @claim.update!(claim_params)",
-        "      end",
+        "    error_message = nil",
+        "    begin",
+        "      ActiveRecord::Base.transaction do",
+        "        case target_status",
+        "        when \"approved\"",
+        "          #approve claim, then item status become claimed",
+        "          @claim.approve!",
+        "          @claim.item.approve_claim!",
+        "        when \"rejected\"",
+        "          #reject claim, then item status become available",
+        "          @claim.reject!",
+        "          @claim.item.reject_claim!",
+        "        else",
+        "          @claim.update!(claim_params)",
+        "        end",
         "      updated = true",
-        "    end",
+        "      end",
+        "    rescue StandardError => e",
+        "      #remain pending when either approve! or reject! fails",
+        "      error_message = e.message",
+        "      updated = false ",
+        "    end ",
         "",
         "    respond_to do |format|",
         "      if updated",
-        "        format.html { redirect_to @claim, notice: \"Claim was successfully updated.\", status: :see_other }",
+        "        format.html { redirect_to @claim, notice: \"Claim was successfully updated.\", ",
+        "        status: :see_other }",
         "        format.json { render :show, status: :ok, location: @claim }",
         "      else",
+        "        flash.now[:alert] = error_message if error_message",
         "        format.html { render :edit, status: :unprocessable_content }",
         "        format.json { render json: @claim.errors, status: :unprocessable_content }",
         "      end",
@@ -252,116 +280,67 @@
         "end"
       ],
       "lines": [
-        0,
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
+        1,
         null,
         null,
-        null,
-        null,
+        1,
+        1,
         0,
         null,
-        null,
-        null,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        null,
-        null,
-        0,
-        null,
-        null,
-        null,
-        0,
-        0,
-        null,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
+        1,
         null,
         null,
         null,
         null,
-        null,
-        null,
-        0,
-        null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        null,
-        0,
-        null,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
+        1,
         null,
         null,
         null,
+        1,
         null,
+        4,
         null,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
+        4,
         null,
         null,
         null,
-        0,
+        1,
         null,
-        0,
-        0,
         null,
+        null,
+        1,
+        4,
+        null,
+        4,
+        null,
+        4,
+        4,
+        4,
+        null,
+        null,
+        4,
+        2,
+        4,
+        2,
+        null,
+        null,
+        2,
+        null,
+        null,
+        2,
+        2,
+        null,
+        null,
+        2,
+        2,
+        2,
+        2,
         null,
         null,
         null,
@@ -369,19 +348,96 @@
         0,
         null,
         null,
+        2,
+        2,
+        4,
+        2,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
         null,
         null,
         null,
         0,
         0,
+        null,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        13,
+        null,
+        null,
+        null,
+        null,
+        1,
+        4,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        4,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 61,
-      "omitted_lines": 63,
-      "total_lines": 61
+      "lines_covered_percent": 59.45945945945946,
+      "covered_lines": 44,
+      "missed_lines": 30,
+      "omitted_lines": 78,
+      "total_lines": 74
     },
     "app/controllers/facilities_controller.rb": {
       "source": [
@@ -537,15 +593,19 @@
     "app/controllers/items_controller.rb": {
       "source": [
         "class ItemsController < ApplicationController",
+        "  before_action :require_login",
         "  before_action :set_item, only: %i[ show edit update destroy ]",
-        "  before_action :require_login, only: %i[ new edit create update destroy ]",
         "  before_action :require_staff, only: %i[ new edit create update destroy ]",
         "  #lamdba function to check item have the same id with the staff",
         "  before_action ->{ ensure_same_facility(@item)}, only: %i[edit update destroy]",
         "",
         "  # GET /items or /items.json",
         "  def index",
-        "    @items = Item.all",
+        "    if current_user.staff?",
+        "      @items = Item.where(facility_id: current_user.facility_id)",
+        "    else",
+        "      @items = Item.available",
+        "    end",
         "  end",
         "",
         "  # GET /items/1 or /items/1.json",
@@ -580,10 +640,11 @@
         "",
         "  # PATCH/PUT /items/1 or /items/1.json",
         "  def update",
-        "    #update of item is triggered by update of change",
+        "    #update of item is triggered by update of claim",
         "    respond_to do |format|",
         "      if @item.update(item_params)",
-        "        format.html { redirect_to @item, notice: \"Item was successfully updated.\", status: :see_other }",
+        "        format.html { redirect_to @item, notice: \"Item was successfully updated.\", ",
+        "        status: :see_other }",
         "        format.json { render :show, status: :ok, location: @item }",
         "      else",
         "        format.html { render :edit, status: :unprocessable_content }",
@@ -615,49 +676,39 @@
         "end"
       ],
       "lines": [
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
         null,
-        0,
-        null,
-        null,
-        0,
-        0,
+        1,
         null,
         null,
-        null,
-        0,
-        null,
-        null,
-        null,
-        0,
-        0,
-        null,
-        null,
+        1,
+        1,
+        1,
         null,
         0,
         null,
         null,
         null,
-        0,
-        0,
-        0,
-        0,
         null,
-        0,
-        0,
-        0,
-        0,
+        1,
         null,
-        0,
+        null,
+        null,
+        1,
         0,
         null,
         null,
         null,
+        1,
         null,
         null,
+        null,
+        1,
+        0,
+        0,
         0,
         null,
         0,
@@ -672,14 +723,11 @@
         null,
         null,
         null,
-        0,
-        0,
+        1,
         null,
         0,
         0,
         0,
-        null,
-        null,
         null,
         0,
         null,
@@ -688,16 +736,34 @@
         null,
         null,
         null,
+        null,
+        null,
+        1,
         0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        2,
+        null,
+        null,
+        null,
+        1,
         0,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 38,
-      "omitted_lines": 39,
-      "total_lines": 38
+      "lines_covered_percent": 45.0,
+      "covered_lines": 18,
+      "missed_lines": 22,
+      "omitted_lines": 42,
+      "total_lines": 40
     },
     "app/controllers/users_controller.rb": {
       "source": [
@@ -858,12 +924,12 @@
         "end"
       ],
       "lines": [
-        0,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 1,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
       "omitted_lines": 1,
       "total_lines": 1
     },
@@ -873,12 +939,12 @@
         "end"
       ],
       "lines": [
-        0,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 1,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
       "omitted_lines": 1,
       "total_lines": 1
     },
@@ -888,12 +954,12 @@
         "end"
       ],
       "lines": [
-        0,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 1,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
       "omitted_lines": 1,
       "total_lines": 1
     },
@@ -903,12 +969,12 @@
         "end"
       ],
       "lines": [
-        0,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 1,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
       "omitted_lines": 1,
       "total_lines": 1
     },
@@ -918,12 +984,12 @@
         "end"
       ],
       "lines": [
-        0,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 1,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
       "omitted_lines": 1,
       "total_lines": 1
     },
@@ -1014,32 +1080,32 @@
         "end"
       ],
       "lines": [
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
         0,
         0,
         null,
-        0,
         null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null,
-        0,
+        1,
         0,
         0,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 15,
+      "lines_covered_percent": 73.33333333333333,
+      "covered_lines": 11,
+      "missed_lines": 4,
       "omitted_lines": 7,
       "total_lines": 15
     },
@@ -1054,17 +1120,17 @@
         "end"
       ],
       "lines": [
-        0,
-        0,
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
         null,
-        0,
+        1,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 5,
+      "lines_covered_percent": 100.0,
+      "covered_lines": 5,
+      "missed_lines": 0,
       "omitted_lines": 2,
       "total_lines": 5
     },
@@ -1084,7 +1150,7 @@
         "  validates :status, presence: true",
         "",
         "  def submit_claim!",
-        "    raise \"The item is not available\" if claimed?",
+        "    raise \"The item is not available\" unless available?",
         "    update(status: :claim_pending)",
         "  end",
         "",
@@ -1100,38 +1166,38 @@
         "end"
       ],
       "lines": [
-        0,
-        0,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        2,
+        2,
+        null,
+        null,
+        1,
         0,
         0,
         null,
-        0,
-        0,
         null,
-        0,
-        0,
-        0,
-        0,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null,
-        0,
+        1,
         0,
         0,
         null,
         null
       ],
-      "lines_covered_percent": 0.0,
-      "covered_lines": 0,
-      "missed_lines": 19,
+      "lines_covered_percent": 78.94736842105263,
+      "covered_lines": 15,
+      "missed_lines": 4,
       "omitted_lines": 9,
       "total_lines": 19
     },
@@ -1194,12 +1260,12 @@
     },
     "Controllers": {
       "lines": {
-        "covered": 0,
-        "missed": 179,
-        "omitted": 187,
-        "total": 179,
-        "percent": 0.0,
-        "strength": 0.0
+        "covered": 72,
+        "missed": 122,
+        "omitted": 205,
+        "total": 194,
+        "percent": 37.11340206185567,
+        "strength": 0.7680412371134021
       },
       "files": [
         "app/controllers/application_controller.rb",
@@ -1211,12 +1277,12 @@
     },
     "Helpers": {
       "lines": {
-        "covered": 0,
-        "missed": 5,
+        "covered": 5,
+        "missed": 0,
         "omitted": 5,
         "total": 5,
-        "percent": 0.0,
-        "strength": 0.0
+        "percent": 100.0,
+        "strength": 1.0
       },
       "files": [
         "app/helpers/application_helper.rb",
@@ -1254,12 +1320,12 @@
     },
     "Models": {
       "lines": {
-        "covered": 11,
-        "missed": 39,
+        "covered": 42,
+        "missed": 8,
         "omitted": 25,
         "total": 50,
-        "percent": 22.0,
-        "strength": 0.22
+        "percent": 84.0,
+        "strength": 0.88
       },
       "files": [
         "app/models/application_record.rb",
@@ -1441,6 +1507,180 @@
         },
         "app/models/item.rb": {
           "line": 0.0
+        },
+        "app/models/user.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-23T07:17:24Z",
+      "branch": "main",
+      "commit": "69e1da3e0d0de310897df1a935aed40b3797a3b2",
+      "totals": {
+        "line": 4.54
+      },
+      "groups": {
+        "Channels": {
+          "line": 0.0
+        },
+        "Controllers": {
+          "line": 0.0
+        },
+        "Helpers": {
+          "line": 0.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 22.0
+        }
+      },
+      "files": {
+        "app/channels/application_cable/channel.rb": {
+          "line": 0.0
+        },
+        "app/channels/application_cable/connection.rb": {
+          "line": 0.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/claims_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/facilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/items_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/users_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 0.0
+        },
+        "app/helpers/claims_helper.rb": {
+          "line": 0.0
+        },
+        "app/helpers/facilities_helper.rb": {
+          "line": 0.0
+        },
+        "app/helpers/items_helper.rb": {
+          "line": 0.0
+        },
+        "app/helpers/users_helper.rb": {
+          "line": 0.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/claim.rb": {
+          "line": 0.0
+        },
+        "app/models/facility.rb": {
+          "line": 0.0
+        },
+        "app/models/item.rb": {
+          "line": 0.0
+        },
+        "app/models/user.rb": {
+          "line": 100.0
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-23T15:08:08Z",
+      "branch": "main",
+      "commit": "d481943c0b35ee5cf200046f0ad338712804767b",
+      "totals": {
+        "line": 46.3
+      },
+      "groups": {
+        "Channels": {
+          "line": 0.0
+        },
+        "Controllers": {
+          "line": 37.11
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 84.0
+        }
+      },
+      "files": {
+        "app/channels/application_cable/channel.rb": {
+          "line": 0.0
+        },
+        "app/channels/application_cable/connection.rb": {
+          "line": 0.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 76.92
+        },
+        "app/controllers/claims_controller.rb": {
+          "line": 59.45
+        },
+        "app/controllers/facilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/items_controller.rb": {
+          "line": 45.0
+        },
+        "app/controllers/users_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/claims_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/facilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/items_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/users_helper.rb": {
+          "line": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/claim.rb": {
+          "line": 73.33
+        },
+        "app/models/facility.rb": {
+          "line": 100.0
+        },
+        "app/models/item.rb": {
+          "line": 78.94
         },
         "app/models/user.rb": {
           "line": 100.0

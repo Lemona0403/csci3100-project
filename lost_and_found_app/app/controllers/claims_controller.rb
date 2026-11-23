@@ -40,13 +40,30 @@ class ClaimsController < ApplicationController
     @claim.user_id = current_user.id
     @claim.facility_id = @item.facility_id
     @claim.status = :pending
-
+    
+    #ban users submit claim for non available claim
+    unless @item.available?
+    respond_to do |format|
+      format.html { redirect_to @item, alert: "The item is not available" }
+      format.json { render json: { error: "The item is not available" }, 
+      status: :unprocessable_content }
+      end
+      return
+    end
+    
     saved = false
+    error_message = nil
     #Set up transaction so that save fails if submit_claim! returns error
-    ActiveRecord::Base.transaction do
+    begin
+      ActiveRecord::Base.transaction do
       @claim.save!
       @item.submit_claim! #item status available to claim-pending when creating new claims
       saved = true
+      end
+    rescue StandardError => e
+      #stop when either @claim.save! or @item.submit_claim! fails
+      error_message = e.message
+      saved = false
     end
 
     respond_to do |format|
@@ -54,8 +71,10 @@ class ClaimsController < ApplicationController
         format.html { redirect_to @claim, notice: "Claim was successfully created." }
         format.json { render :show, status: :created, location: @claim }
       else
+        flash.now[:alert] = error_message if error_message
         format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @claim.errors, status: :unprocessable_content }
+        format.json { render json: { errors: @claim.errors, message: error_message }, 
+        status: :unprocessable_content }
       end
     end
 
@@ -66,27 +85,36 @@ class ClaimsController < ApplicationController
     #get the status user want to change
     target_status = claim_params[:status]
     updated = false
-    ActiveRecord::Base.transaction do
-      case target_status
-      when "approved"
-        #approve claim, then item status become claimed
-        @claim.approve!
-        @claim.item.approve_claim!
-      when "rejected"
-        #reject claim, then item status become available
-        @claim.reject!
-        @claim.item.reject_claim!
-      else
-        @claim.update!(claim_params)
-      end
+    error_message = nil
+    begin
+      ActiveRecord::Base.transaction do
+        case target_status
+        when "approved"
+          #approve claim, then item status become claimed
+          @claim.approve!
+          @claim.item.approve_claim!
+        when "rejected"
+          #reject claim, then item status become available
+          @claim.reject!
+          @claim.item.reject_claim!
+        else
+          @claim.update!(claim_params)
+        end
       updated = true
-    end
+      end
+    rescue StandardError => e
+      #remain pending when either approve! or reject! fails
+      error_message = e.message
+      updated = false 
+    end 
 
     respond_to do |format|
       if updated
-        format.html { redirect_to @claim, notice: "Claim was successfully updated.", status: :see_other }
+        format.html { redirect_to @claim, notice: "Claim was successfully updated.", 
+        status: :see_other }
         format.json { render :show, status: :ok, location: @claim }
       else
+        flash.now[:alert] = error_message if error_message
         format.html { render :edit, status: :unprocessable_content }
         format.json { render json: @claim.errors, status: :unprocessable_content }
       end

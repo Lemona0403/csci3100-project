@@ -7,7 +7,11 @@ class ItemsController < ApplicationController
 
   # GET /items or /items.json
   def index
-    @items = Item.all
+    if current_user.staff?
+      @items = Item.where(facility_id: current_user.facility_id)
+    else
+      @items = Item.available
+    end
   end
 
   # GET /items/1 or /items/1.json
@@ -42,10 +46,11 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1 or /items/1.json
   def update
-    #update of item is triggered by update of change
+    #update of item is triggered by update of claim
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: "Item was successfully updated.", status: :see_other }
+        format.html { redirect_to @item, notice: "Item was successfully updated.", 
+        status: :see_other }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit, status: :unprocessable_content }

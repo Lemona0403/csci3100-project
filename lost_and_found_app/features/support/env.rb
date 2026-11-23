@@ -8,6 +8,14 @@ require 'simplecov'
 SimpleCov.start 'rails' 
 require 'cucumber/rails'
 
+#Warden fakes a logged-in user and defines login_as & logout under Devise
+include Warden::Test::Helpers
+Warden.test_mode!
+
+After do
+  Warden.test_reset!
+end
+
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
 # your application behaves in the production environment, where an error page will
