@@ -5,7 +5,6 @@
 <% if user_signed_in? %>
   <%= link_to "Browse items", items_path %>
 <% else %>
-  <p>Sign in to browse the lost-and-found items.</p>
-  <%= link_to "Sign in", new_user_session_path %>
+  <p>Log in to browse the lost-and-found items.</p>
   <%= link_to "Create an account", new_user_registration_path %>
 <% end %>
