@@ -50,6 +50,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy' 
   gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem "rails-controller-testing"
 end
 
 group :development do
@@ -70,7 +72,6 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'cucumber-rails-training-wheels'
   gem 'simplecov', :require => false
-  gem "factory_bot_rails"
 end
 
 gem "devise", "~> 5.0"

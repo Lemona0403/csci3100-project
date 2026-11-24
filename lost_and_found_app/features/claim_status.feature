@@ -14,7 +14,8 @@ Feature: How claim status is changed together with item status
   Scenario: User tries to submit a claim for item that are claim_pending or claimed
     Given a pending claim on "Blue Hoodie" by "user1@example.com"
     And I am logged in as "user1@example.com"
-    When I claim item "Blue Hoodie" with contact "12345678"
+    When I try to claim "Blue Hoodie"
+    Then I should be redirected to the item page
     Then I should see that the item cannot be claimed
     And item "Blue Hoodie" should have status "claim_pending"
 

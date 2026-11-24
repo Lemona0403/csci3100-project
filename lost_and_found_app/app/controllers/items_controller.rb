@@ -8,9 +8,17 @@ class ItemsController < ApplicationController
   # GET /items or /items.json
   def index
     if current_user.staff?
+      #staff can search and sort by category & status
       @items = Item.where(facility_id: current_user.facility_id)
+                   .search(params[:query])
+                   .by_category(params[:category])
+                   .by_status(params[:status])
     else
+      #general users can search and sort by facility & category
       @items = Item.available
+                   .search(params[:query])
+                   .by_facility(params[:facility_id])
+                   .by_category(params[:category])
     end
   end
 

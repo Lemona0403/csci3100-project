@@ -97,6 +97,26 @@ items_data = [
     category: :clothing, status: :available,
     date_found: "2026-01-10 14:30" },
 
+  { facility: "University Library", 
+    title: "Blue Jacket", description: "Jacket",
+    category: :clothing, status: :available,
+    date_found: "2026-01-15 15:30" },
+
+  { facility: "University Library", 
+    title: "HKID Card", description: "ID Card",
+    category: :ID_card, status: :claim_pending,
+    date_found: "2026-01-04 17:45" },
+
+  { facility: "University Library", 
+    title: "Black Water Bottle", description: "Bottle",
+    category: :water_bottle, status: :claim_pending,
+    date_found: "2026-01-09 16:15" },
+
+  { facility: "University Library", 
+    title: "Black Power Bank", description: "Power Bank",
+    category: :electronic_device, status: :claimed,
+    date_found: "2026-01-19 16:30" },
+  
   { facility: "Chung Chi College Elisabeth Luce Moore Library",
     title: "Stainless Water Bottle", description: "Bottle",
     category: :water_bottle, status: :available,
@@ -140,7 +160,7 @@ items_data.each do |data|
   item.category    = data[:category]
   item.status      = data[:status]
   item.date_found  = Time.zone.parse(data[:date_found])
-  item.save!
+  item.save!(validate: false)
 end
 
 puts "Created #{Item.count} items"

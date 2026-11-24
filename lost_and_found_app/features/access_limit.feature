@@ -13,8 +13,9 @@ Feature: Access limit
   Scenario: General users cannot claim item that is claim_pending
     Given a pending claim on "Blue Hoodie" by "user1@example.com"
     And I am logged in as "user2@example.com"
-    When I claim item "Blue Hoodie" with contact "12345678"
-    Then I should see that the item cannot be claimed
+    When I try to claim "Blue Hoodie"
+    Then I should be redirected to the item page
+    And I should see that the item cannot be claimed
     And item "Blue Hoodie" should have status "claim_pending"
 
   Scenario: Staff cannot see items from another facility

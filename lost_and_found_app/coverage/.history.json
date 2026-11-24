@@ -262,6 +262,2181 @@
             "line": 100.0
           }
         }
+      },
+      {
+        "created_at": "2026-11-23T16:24:51Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 15.32
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 64.81
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 0.0
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T16:32:37Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 15.32
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 64.81
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 0.0
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T16:32:47Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 15.32
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 64.81
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 0.0
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T16:35:31Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 15.32
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 64.81
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 0.0
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T16:37:58Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 19.54
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T17:12:34Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 19.54
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T17:22:47Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 19.54
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T17:22:51Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 19.54
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T17:26:58Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 19.54
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-23T17:38:26Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 19.54
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 0.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T05:56:43Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 47.12
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 37.11
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 59.45
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T05:58:16Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 47.12
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 37.11
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 59.45
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T05:58:25Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 47.12
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 37.11
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 59.45
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T06:20:24Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 28.35
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 11.85
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 61.53
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 37.5
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T06:20:55Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 47.12
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 37.11
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 59.45
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T06:21:03Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 47.12
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 37.11
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 59.45
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T07:01:37Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 29.5
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 13.4
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 61.53
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T07:01:56Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 47.5
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 37.62
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 59.45
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 47.5
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T07:02:44Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 47.5
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 37.62
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 85.18
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 59.45
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 47.5
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 73.33
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.6
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T14:32:23Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 33.44
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 13.4
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 79.51
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 61.53
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 64.28
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.05
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T14:32:36Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 33.44
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 13.4
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 79.51
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 61.53
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 64.28
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.05
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T15:05:16Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 33.44
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 13.4
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 79.51
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 61.53
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 64.28
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 82.05
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T16:02:53Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 56.5
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 43.87
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 89.15
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 76.92
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 76.31
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 45.0
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 78.57
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 92.3
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T17:49:58Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 59.1
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 47.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 93.97
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 92.3
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 73.19
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 47.5
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 92.85
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 92.3
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
+      },
+      {
+        "created_at": "2026-11-24T17:51:40Z",
+        "branch": "main",
+        "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+        "totals": {
+          "line": 59.1
+        },
+        "groups": {
+          "Channels": {
+            "line": 0.0
+          },
+          "Controllers": {
+            "line": 47.0
+          },
+          "Helpers": {
+            "line": 100.0
+          },
+          "Jobs": {
+            "line": 0.0
+          },
+          "Mailers": {
+            "line": 0.0
+          },
+          "Models": {
+            "line": 93.97
+          }
+        },
+        "files": {
+          "app/channels/application_cable/channel.rb": {
+            "line": 0.0
+          },
+          "app/channels/application_cable/connection.rb": {
+            "line": 0.0
+          },
+          "app/controllers/application_controller.rb": {
+            "line": 92.3
+          },
+          "app/controllers/claims_controller.rb": {
+            "line": 73.19
+          },
+          "app/controllers/facilities_controller.rb": {
+            "line": 0.0
+          },
+          "app/controllers/items_controller.rb": {
+            "line": 47.5
+          },
+          "app/controllers/users_controller.rb": {
+            "line": 0.0
+          },
+          "app/helpers/application_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/claims_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/facilities_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/items_helper.rb": {
+            "line": 100.0
+          },
+          "app/helpers/users_helper.rb": {
+            "line": 100.0
+          },
+          "app/jobs/application_job.rb": {
+            "line": 0.0
+          },
+          "app/mailers/application_mailer.rb": {
+            "line": 0.0
+          },
+          "app/models/application_record.rb": {
+            "line": 100.0
+          },
+          "app/models/claim.rb": {
+            "line": 92.85
+          },
+          "app/models/facility.rb": {
+            "line": 100.0
+          },
+          "app/models/item.rb": {
+            "line": 92.3
+          },
+          "app/models/user.rb": {
+            "line": 100.0
+          }
+        }
       }
     ]
   }

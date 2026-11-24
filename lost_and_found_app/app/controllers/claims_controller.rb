@@ -1,5 +1,5 @@
 class ClaimsController < ApplicationController
-  before_action :set_item
+  before_action :set_item, only: %i[ new create ]
   before_action :set_claim, only: %i[ show edit update destroy ]
   before_action :require_login
   before_action :require_staff, only: %i[ edit update destroy ]
@@ -9,20 +9,35 @@ class ClaimsController < ApplicationController
   # GET /claims or /claims.json
   def index
     if current_user.staff?
-      @claims = Claim.where(facility_id: current_user.facility_id)
+      @claims = Claim.where(facility_id: current_user.facility_id).pending_first
     else
       @claims = Claim.where(user_id: current_user.id) 
     end
+    @claims = @claims.search(params[:query]).by_status(params[:status])
   end
 
   # GET /claims/1 or /claims/1.json
   def show
+    unless can_view_claim?(@claim)
+      respond_to do |format|
+        format.html { redirect_to claims_path, alert: "You cannot view other users' claims." }
+        format.json { render json: { error: "You cannot view other users' claims." }, 
+                      status: :forbidden }
+      end
+      return
+    end
   end
 
   # GET /claims/new
   def new
-    #Get the id of an item before creating a claim for that item
-    @item = Item.find(params[:item_id])
+    unless @item.available?
+      respond_to do |format|
+        format.html { redirect_to @item, alert: "The item is not available" }
+        format.json { render json: { error: "The item is not available" }, 
+                      status: :unprocessable_content }
+      end
+      return
+    end
     # new sets item_id foreign key automatically
     @claim ||= @item.claims.new
   end
@@ -43,10 +58,10 @@ class ClaimsController < ApplicationController
     
     #ban users submit claim for non available claim
     unless @item.available?
-    respond_to do |format|
+      respond_to do |format|
       format.html { redirect_to @item, alert: "The item is not available" }
       format.json { render json: { error: "The item is not available" }, 
-      status: :unprocessable_content }
+                    status: :unprocessable_content }
       end
       return
     end
@@ -83,9 +98,10 @@ class ClaimsController < ApplicationController
   # PATCH/PUT /claims/1 or /claims/1.json
   def update
     #get the status user want to change
-    target_status = claim_params[:status]
+    target_status = claim_params_for_update[:status]
     updated = false
     error_message = nil
+
     begin
       ActiveRecord::Base.transaction do
         case target_status
@@ -136,17 +152,37 @@ class ClaimsController < ApplicationController
     def set_item
       @item = Item.find(params[:item_id])
     rescue ActiveRecord::RecordNotFound
-      #redirect_to ,alert: 'Item not found' 
+      respond_to do |format|
+        format.html { redirect_to items_path, alert: "Item not found." }
+        format.json { render json: { error: "Item not found." }, status: :not_found }
+      end
     end
     
     def set_claim
       @claim = Claim.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      #redirect_to ,alert: 'Claim not found'
+      respond_to do |format|
+        format.html { redirect_to claims_path, alert: "Claim not found." }
+        format.json { render json: { error: "Claim not found." }, status: :not_found }
+      end
     end
 
     # Only allow a list of trusted parameters through.
     def claim_params
       params.require(:claim).permit(:contact_info, :message)
+    end
+
+    def claim_params_for_update
+      params.require(:claim).permit(:contact_info, :message, :status)
+    end
+
+    def can_view_claim?(claim)
+      if current_user.staff? && claim.facility_id == current_user.facility_id
+        return true
+      elsif current_user.general? && claim.user_id == current_user.id
+        return true
+      else
+        return false
+      end
     end
 end

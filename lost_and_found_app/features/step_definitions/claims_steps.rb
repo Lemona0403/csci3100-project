@@ -20,6 +20,16 @@ When (/^I claim item "(.*)" with contact "(.*)"$/) do |title, contact|
   click_button "Create Claim"
 end
 
+When (/^I try to claim "(.*)"$/) do |title|
+  item = Item.find_by!(title: title)
+  visit new_item_claim_path(item)
+end
+
+Then (/^I should be redirected to the item page$/) do
+  expect(page).not_to have_field("Contact info")
+  expect(page).not_to have_button("Create Claim")
+end
+
 When (/^I approve the claim for "(.*)"$/) do |title|
   item = Item.find_by!(title: title)
   claim = item.claims.where(status: :pending).order(:id).last!
