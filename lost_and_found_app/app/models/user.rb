@@ -10,6 +10,8 @@ class User < ApplicationRecord
   enum :role, {general: 0, staff: 1}
   #ensure staff have facility_id, general users have no facility_id
   validates :name, presence: true
+  validates :name, length: { maximum: 50 }
+  validates :name, uniqueness: { case_sensitive: true }, on: :create
   validates :facility_id, presence: true, if: :staff?
   validates :facility_id, absence: true, if: :general?
   validate :password_has_three_character_types, if: -> { password.present? }

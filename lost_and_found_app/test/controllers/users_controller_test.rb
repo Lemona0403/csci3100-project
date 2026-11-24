@@ -73,6 +73,39 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_url
   end
 
+  test "rejects registration with an identical account name" do
+    assert_no_difference("User.count") do
+      post user_registration_url, params: {
+        user: {
+          email: "duplicate-name@example.com",
+          name: users(:one).name,
+          role: "general",
+          password: "Password123!",
+          password_confirmation: "Password123!"
+        }
+      }
+    end
+
+    assert_response :unprocessable_content
+    assert_includes response.body, "has already been taken"
+  end
+
+  test "allows registration with an account name that differs only by case" do
+    assert_difference("User.count", 1) do
+      post user_registration_url, params: {
+        user: {
+          email: "case-different-name@example.com",
+          name: users(:one).name.swapcase,
+          role: "general",
+          password: "Password123!",
+          password_confirmation: "Password123!"
+        }
+      }
+    end
+
+    assert_redirected_to root_url
+  end
+
 
   test "should show user" do
     sign_in @user

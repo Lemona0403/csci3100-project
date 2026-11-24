@@ -1,6 +1,31 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
+  test "accepts a user name with 50 characters" do
+    user = User.new(
+      email: "maximum-name@example.com",
+      name: "a" * 50,
+      role: :general,
+      password: "Password123!",
+      password_confirmation: "Password123!"
+    )
+
+    assert user.valid?, user.errors.full_messages.inspect
+  end
+
+  test "rejects a user name longer than 50 characters" do
+    user = User.new(
+      email: "long-name@example.com",
+      name: "a" * 51,
+      role: :general,
+      password: "Password123!",
+      password_confirmation: "Password123!"
+    )
+
+    assert_not user.valid?
+    assert_includes user.errors[:name], "is too long (maximum is 50 characters)"
+  end
+
   test "accepts a password with at least three character types" do
     user = User.new(
       email: "strong-password@example.com",
