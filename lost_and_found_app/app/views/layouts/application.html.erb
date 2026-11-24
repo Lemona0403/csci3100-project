@@ -12,10 +12,12 @@
 
   <body>
     <header>
-      <nav>
-        <%= link_to "Items", items_path %>
+        <nav>
+        <%= link_to "Home", root_path %>
 
         <% if user_signed_in? %>
+          <%= link_to "Items", items_path %>
+
           <span>
             Signed in as <%= current_user.name %> (<%= current_user.role %>)
           </span>
@@ -32,10 +34,10 @@
                 destroy_user_session_path,
                 method: :delete %>
         <% elsif !devise_controller? %>
-          <%= link_to "Log in", new_user_session_path %>
+          <%= link_to "Sign in", new_user_session_path %>
           <%= link_to "Sign up", new_user_registration_path %>
         <% end %>
-      </nav>
+        </nav>
     </header>
 
     <% if notice.present? %>
