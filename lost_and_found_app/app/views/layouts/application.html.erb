@@ -13,7 +13,9 @@
   <body>
     <header>
         <nav>
-        <%= link_to "Home", root_path %>
+        <% unless current_page?(root_path) %>
+          <%= link_to "Home", root_path %>
+        <% end %>
 
         <% if user_signed_in? %>
           <%= link_to "Items", items_path %>

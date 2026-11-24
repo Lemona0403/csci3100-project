@@ -9,6 +9,7 @@
     <% if @minimum_password_length %>
       <p><em>(<%= @minimum_password_length %> characters minimum)</em></p>
     <% end %>
+    <p><em>Use at least three: uppercase letters, lowercase letters, numbers, and symbols.</em></p>
     <p><%= f.password_field :password, autofocus: true, autocomplete: "new-password" %></p>
   </div>
 

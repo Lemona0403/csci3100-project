@@ -1,6 +1,8 @@
 require "test_helper"
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
+  include ActiveSupport::Testing::TimeHelpers
+
   setup do
     @user = users(:one)
   end
@@ -15,6 +17,47 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "locks account after five failed sign in attempts" do
+    5.times do
+      post user_session_url, params: {
+        user: { email: @user.email, password: "Incorrect1!" }
+      }
+    end
+
+    assert @user.reload.access_locked?
+    assert_equal 5, @user.failed_attempts
+    assert_equal 3.minutes, Devise.unlock_in
+    assert_equal I18n.t("devise.failure.locked_with_time", minutes: 3, seconds: 0), flash[:alert]
+  end
+
+  test "warns of the last attempt on the fourth failed sign in" do
+    4.times do
+      post user_session_url, params: {
+        user: { email: @user.email, password: "Incorrect1!" }
+      }
+    end
+
+    assert_equal 4, @user.reload.failed_attempts
+    assert_equal I18n.t("devise.failure.last_attempt"), flash[:alert]
+  end
+
+  test "shows the remaining lock time on a locked account" do
+    travel_to(Time.zone.local(2026, 1, 1, 12)) do
+      5.times do
+        post user_session_url, params: {
+          user: { email: @user.email, password: "Incorrect1!" }
+        }
+      end
+
+      @user.update_column(:locked_at, 2.minutes.ago)
+      post user_session_url, params: {
+        user: { email: @user.email, password: "Incorrect1!" }
+      }
+
+      assert_equal I18n.t("devise.failure.locked_with_time", minutes: 1, seconds: 0), flash[:alert]
+    end
+  end
+
   test "should create user" do
     assert_difference("User.count", 1) do
       post user_registration_url, params: {
@@ -22,8 +65,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
           email: "new-user@example.com",
           name: "New User",
           role: "general",
-          password: "password123",
-          password_confirmation: "password123"
+          password: "Password123!",
+          password_confirmation: "Password123!"
         }
       }
     end
