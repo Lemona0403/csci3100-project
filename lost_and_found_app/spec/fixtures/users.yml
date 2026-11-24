@@ -1,0 +1,20 @@
+user1:
+  email: user1@example.com
+  name: General User One
+  role: 0
+  facility_id:
+  encrypted_password: <%= Devise::Encryptor.digest(User, "ABCabc123!@#") %>
+
+user2:
+  email: user2@example.com
+  name: General User Two
+  role: 0
+  facility_id:
+  encrypted_password: <%= Devise::Encryptor.digest(User, "ABCabc123!@#") %>
+
+staff:
+  email: staff.ulib@example.com
+  name: ULib Staff
+  role: 1
+  facility: library
+  encrypted_password: <%= Devise::Encryptor.digest(User, "ABCabc123!@#") %>

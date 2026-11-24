@@ -68,7 +68,7 @@ staff_data.each do |data|
   user.name = data[:name]
   user.role = :staff              
   user.facility = facility      
-  user.password = "password"   
+  user.password = "ABCabc123!@#"   
   user.save!
 end
 
@@ -85,7 +85,7 @@ general_data.each do |data|
   general.name = data[:name]
   general.role = :general
   general.facility_id = nil
-  general.password = "password"
+  general.password = "ABCabc123!@#"
   general.save!
 end
 

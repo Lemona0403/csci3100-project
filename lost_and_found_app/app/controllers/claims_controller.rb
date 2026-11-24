@@ -32,7 +32,7 @@ class ClaimsController < ApplicationController
   def new
     unless @item.available?
       respond_to do |format|
-        format.html { redirect_to @item, alert: "The item is not available" }
+        format.html { redirect_to items_path, alert: "The item is not available" }
         format.json { render json: { error: "The item is not available" }, 
                       status: :unprocessable_content }
       end

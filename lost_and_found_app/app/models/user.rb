@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :claims, dependent: :destroy
   has_many :items, through: :claims
 
-  enum :role, {general: 0, staff: 1}
+  enum :role, {general: 0, staff: 1}, default: :general
   #ensure staff have facility_id, general users have no facility_id
   validates :name, presence: true
   validates :name, length: { maximum: 50 }

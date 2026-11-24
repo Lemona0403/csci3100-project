@@ -24,6 +24,21 @@ class ItemsController < ApplicationController
 
   # GET /items/1 or /items/1.json
   def show
+    if current_user.general? && !@item.available?
+      respond_to do |format|
+        format.html { redirect_to items_path, alert: "You can only view available items." }
+        format.json { render json: { error: "You can only view available items." }, status: :forbidden }
+      end
+      return
+    end
+
+    if current_user.staff? && @item.facility_id != current_user.facility_id
+      respond_to do |format|
+        format.html { redirect_to items_path, alert: "Wrong facility." }
+        format.json { render json: { error: "Wrong facility." }, status: :forbidden }
+      end
+      return
+    end
   end
 
   # GET /items/new

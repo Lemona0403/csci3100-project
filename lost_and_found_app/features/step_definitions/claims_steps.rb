@@ -25,7 +25,7 @@ When (/^I try to claim "(.*)"$/) do |title|
   visit new_item_claim_path(item)
 end
 
-Then (/^I should be redirected to the item page$/) do
+Then (/^I should be redirected to the items page$/) do
   expect(page).not_to have_field("Contact info")
   expect(page).not_to have_button("Create Claim")
 end

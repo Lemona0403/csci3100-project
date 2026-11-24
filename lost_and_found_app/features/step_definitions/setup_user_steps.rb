@@ -10,7 +10,7 @@ Given (/^staff "(.*)" belongs to "(.*)"$/) do |email, facility_name|
   user.name = "Staff #{email}"
   user.role = :staff
   user.facility = facility
-  user.password = "password"
+  user.password = "ABCabc123!@#"
   user.save!
 end
 
@@ -19,6 +19,6 @@ Given (/^general user "(.*)" exists$/) do |email|
   user.name = "User #{email}"
   user.role = :general
   user.facility_id = nil
-  user.password = "password"
+  user.password = "ABCabc123!@#"
   user.save!
 end

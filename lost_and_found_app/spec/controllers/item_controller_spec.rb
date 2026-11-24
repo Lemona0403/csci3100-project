@@ -1,13 +1,14 @@
 require "rails_helper"
 
 RSpec.describe ItemsController, type: :controller do
-  fixtures :facilities
+  fixtures :facilities, :users
   describe "Access limit on item" do
     it "assigns only available items for general users" do
       visible = create(:item, title: "Visible", status: :available)
       hidden = build(:item, title: "Hidden", status: :claim_pending)
       hidden.save!(validate: false)
-      sign_in create(:user, :general)
+
+      sign_in users(:user1)
       get :index
       expect(response).to have_http_status(:ok)
       expect(assigns(:items)).to include(visible)
@@ -17,7 +18,8 @@ RSpec.describe ItemsController, type: :controller do
     it "filters by keyword for general users" do
       hoodie = create(:item, title: "Blue Hoodie", status: :available)
       usb = create(:item, title: "USB Drive", status: :available)
-      sign_in create(:user, :general)
+
+      sign_in users(:user1)
       get :index, params: { query: "Hoodie" }
       expect(response).to have_http_status(:ok)
       expect(assigns(:items)).to include(hoodie)
@@ -29,7 +31,8 @@ RSpec.describe ItemsController, type: :controller do
       sport = facilities(:sport_centre)
       item_a = create(:item, title: "A", facility: lib)
       item_b = create(:item, title: "B", facility: sport)
-      sign_in create(:user, :staff, facility: lib)
+
+      sign_in users(:staff)
       get :index
       expect(response).to have_http_status(:ok)
       expect(assigns(:items)).to include(item_a)

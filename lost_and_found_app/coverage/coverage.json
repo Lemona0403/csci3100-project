@@ -3,15 +3,14 @@
   "meta": {
     "schema_version": "1.3",
     "simplecov_version": "1.3.2",
-    "command_name": "Cucumber Features, RSpec",
+    "command_name": "RSpec",
     "command_names": [
-      "Cucumber Features",
       "RSpec"
     ],
     "project_name": "Lost and found app",
-    "timestamp": "2026-11-25T01:52:16.718+08:00",
+    "timestamp": "2026-11-25T03:31:57.730+08:00",
     "root": "/home/lwk0808/csci3100-project/lost_and_found_app",
-    "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+    "commit": "de3118bb38b0c9091183c55e42c4412d30e9c662",
     "primary_coverage": "line",
     "line_coverage": true,
     "branch_coverage": false,
@@ -19,12 +18,12 @@
   },
   "total": {
     "lines": {
-      "covered": 185,
-      "missed": 128,
-      "omitted": 304,
-      "total": 313,
-      "percent": 59.105431309904155,
-      "strength": 1.5942492012779552
+      "covered": 181,
+      "missed": 162,
+      "omitted": 328,
+      "total": 343,
+      "percent": 52.76967930029154,
+      "strength": 0.8075801749271136
     }
   },
   "coverage": {
@@ -94,34 +93,34 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
-        null,
-        2,
-        null,
-        2,
-        25,
-        null,
-        null,
-        2,
-        2,
-        null,
-        null,
-        2,
         1,
         1,
         null,
+        1,
         null,
+        1,
+        10,
+        null,
+        null,
+        1,
         2,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
         2,
         0,
         null,
         null,
         null
       ],
-      "lines_covered_percent": 92.3076923076923,
-      "covered_lines": 12,
-      "missed_lines": 1,
+      "lines_covered_percent": 76.92307692307692,
+      "covered_lines": 10,
+      "missed_lines": 3,
       "omitted_lines": 11,
       "total_lines": 13
     },
@@ -161,7 +160,7 @@
         "  def new",
         "    unless @item.available?",
         "      respond_to do |format|",
-        "        format.html { redirect_to @item, alert: \"The item is not available\" }",
+        "        format.html { redirect_to items_path, alert: \"The item is not available\" }",
         "        format.json { render json: { error: \"The item is not available\" }, ",
         "                      status: :unprocessable_content }",
         "      end",
@@ -317,30 +316,30 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
-        4,
+        3,
         null,
         null,
-        2,
-        2,
+        1,
+        1,
         0,
         null,
-        2,
+        1,
         null,
-        2,
+        1,
         null,
         null,
         null,
-        2,
-        4,
+        1,
         0,
         0,
         0,
+        0,
         null,
         null,
         null,
@@ -348,35 +347,35 @@
         null,
         null,
         null,
-        2,
-        4,
-        2,
-        4,
-        2,
+        1,
+        0,
+        0,
+        0,
+        0,
         null,
         null,
-        2,
+        0,
         null,
         null,
-        2,
-        null,
-        null,
-        null,
-        2,
+        0,
         null,
         null,
         null,
-        2,
-        5,
-        null,
-        5,
-        null,
-        5,
-        5,
-        5,
+        1,
         null,
         null,
-        5,
+        null,
+        1,
+        3,
+        null,
+        3,
+        null,
+        3,
+        3,
+        3,
+        null,
+        null,
+        3,
         1,
         2,
         1,
@@ -385,37 +384,37 @@
         1,
         null,
         null,
-        4,
-        4,
-        null,
-        null,
-        4,
-        4,
-        4,
-        4,
-        null,
-        null,
-        null,
-        0,
-        0,
-        null,
-        null,
-        4,
-        4,
-        8,
-        4,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
+        2,
+        2,
         null,
         null,
         2,
+        2,
+        2,
+        2,
+        null,
+        null,
+        null,
+        0,
+        0,
+        null,
+        null,
+        2,
+        2,
+        4,
+        2,
+        null,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
         null,
         2,
         2,
@@ -457,7 +456,7 @@
         null,
         null,
         null,
-        2,
+        1,
         0,
         null,
         0,
@@ -466,19 +465,10 @@
         null,
         null,
         null,
-        2,
+        1,
         null,
-        2,
-        9,
-        null,
-        0,
-        0,
-        0,
-        null,
-        null,
-        null,
-        2,
-        6,
+        1,
+        3,
         null,
         0,
         0,
@@ -486,29 +476,38 @@
         null,
         null,
         null,
-        null,
-        2,
-        5,
-        null,
-        null,
-        2,
+        1,
         2,
         null,
+        0,
+        0,
+        0,
         null,
+        null,
+        null,
+        null,
+        1,
+        3,
+        null,
+        null,
+        1,
         2,
-        4,
-        2,
-        2,
-        2,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
         null,
         0,
         null,
         null,
         null
       ],
-      "lines_covered_percent": 73.19587628865979,
-      "covered_lines": 71,
-      "missed_lines": 26,
+      "lines_covered_percent": 61.855670103092784,
+      "covered_lines": 60,
+      "missed_lines": 37,
       "omitted_lines": 91,
       "total_lines": 97
     },
@@ -663,6 +662,25 @@
       "omitted_lines": 37,
       "total_lines": 33
     },
+    "app/controllers/home_controller.rb": {
+      "source": [
+        "class HomeController < ApplicationController",
+        "  def index",
+        "  end",
+        "end"
+      ],
+      "lines": [
+        0,
+        0,
+        null,
+        null
+      ],
+      "lines_covered_percent": 0.0,
+      "covered_lines": 0,
+      "missed_lines": 2,
+      "omitted_lines": 2,
+      "total_lines": 2
+    },
     "app/controllers/items_controller.rb": {
       "source": [
         "class ItemsController < ApplicationController",
@@ -691,6 +709,21 @@
         "",
         "  # GET /items/1 or /items/1.json",
         "  def show",
+        "    if current_user.general? && !@item.available?",
+        "      respond_to do |format|",
+        "        format.html { redirect_to items_path, alert: \"You can only view available items.\" }",
+        "        format.json { render json: { error: \"You can only view available items.\" }, status: :forbidden }",
+        "      end",
+        "      return",
+        "    end",
+        "",
+        "    if current_user.staff? && @item.facility_id != current_user.facility_id",
+        "      respond_to do |format|",
+        "        format.html { redirect_to items_path, alert: \"Wrong facility.\" }",
+        "        format.json { render json: { error: \"Wrong facility.\" }, status: :forbidden }",
+        "      end",
+        "      return",
+        "    end",
         "  end",
         "",
         "  # GET /items/new",
@@ -757,26 +790,18 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
+        1,
         null,
-        2,
-        null,
-        null,
-        2,
-        4,
-        null,
-        2,
+        1,
         null,
         null,
+        1,
+        3,
         null,
-        null,
-        null,
-        2,
-        null,
-        null,
+        1,
         null,
         null,
         null,
@@ -786,40 +811,21 @@
         null,
         null,
         null,
-        2,
-        0,
         null,
         null,
         null,
-        2,
         null,
-        null,
-        null,
-        2,
-        0,
-        0,
-        0,
-        null,
+        1,
         0,
         0,
         0,
         0,
         null,
         0,
-        0,
         null,
-        null,
-        null,
-        null,
-        null,
-        2,
         null,
         0,
         0,
-        0,
-        null,
-        0,
-        null,
         0,
         0,
         null,
@@ -827,7 +833,49 @@
         null,
         null,
         null,
-        2,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
         0,
         null,
         0,
@@ -836,23 +884,23 @@
         null,
         null,
         null,
-        2,
+        1,
         null,
-        2,
-        2,
+        1,
+        0,
         null,
         null,
         null,
-        2,
+        1,
         0,
         null,
         null
       ],
-      "lines_covered_percent": 47.5,
-      "covered_lines": 19,
-      "missed_lines": 21,
-      "omitted_lines": 50,
-      "total_lines": 40
+      "lines_covered_percent": 36.734693877551024,
+      "covered_lines": 18,
+      "missed_lines": 31,
+      "omitted_lines": 56,
+      "total_lines": 49
     },
     "app/controllers/users_controller.rb": {
       "source": [
@@ -1013,7 +1061,7 @@
         "end"
       ],
       "lines": [
-        2,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -1028,7 +1076,7 @@
         "end"
       ],
       "lines": [
-        2,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -1043,7 +1091,22 @@
         "end"
       ],
       "lines": [
-        2,
+        1,
+        null
+      ],
+      "lines_covered_percent": 100.0,
+      "covered_lines": 1,
+      "missed_lines": 0,
+      "omitted_lines": 1,
+      "total_lines": 1
+    },
+    "app/helpers/home_helper.rb": {
+      "source": [
+        "module HomeHelper",
+        "end"
+      ],
+      "lines": [
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -1058,7 +1121,7 @@
         "end"
       ],
       "lines": [
-        2,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -1073,7 +1136,7 @@
         "end"
       ],
       "lines": [
-        2,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -1130,18 +1193,26 @@
       "source": [
         "class ApplicationRecord < ActiveRecord::Base",
         "  primary_abstract_class",
+        "  def configure_permitted_parameters",
+        "    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name])",
+        "    devise_parameter_sanitizer.permit(:account_update, keys: %i[name])",
+        "  end",
         "end"
       ],
       "lines": [
-        2,
-        2,
+        1,
+        1,
+        1,
+        0,
+        0,
+        null,
         null
       ],
-      "lines_covered_percent": 100.0,
-      "covered_lines": 2,
-      "missed_lines": 0,
-      "omitted_lines": 1,
-      "total_lines": 2
+      "lines_covered_percent": 60.0,
+      "covered_lines": 3,
+      "missed_lines": 2,
+      "omitted_lines": 2,
+      "total_lines": 5
     },
     "app/models/claim.rb": {
       "source": [
@@ -1198,22 +1269,22 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
+        1,
         null,
-        2,
+        1,
         null,
-        2,
-        2,
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
+        1,
+        1,
         null,
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
         null,
         null,
         0,
@@ -1222,30 +1293,30 @@
         null,
         null,
         null,
-        2,
-        2,
+        1,
+        1,
         0,
         null,
-        2,
-        null,
-        null,
-        null,
-        2,
-        null,
-        2,
-        1,
         1,
         null,
         null,
-        2,
+        null,
+        1,
+        null,
+        1,
         1,
         1,
         null,
         null,
-        2,
+        1,
+        1,
+        1,
         null,
-        2,
-        16,
+        null,
+        1,
+        null,
+        1,
+        8,
         null,
         null,
         null
@@ -1267,12 +1338,12 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
+        1,
         null,
-        2,
+        1,
         null
       ],
       "lines_covered_percent": 100.0,
@@ -1354,72 +1425,72 @@
         "end"
       ],
       "lines": [
-        2,
-        2,
-        2,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        3,
         2,
         null,
+        1,
+        null,
+        null,
+        null,
+        1,
         2,
-        2,
+        0,
         null,
         2,
-        2,
-        2,
-        2,
         null,
-        2,
         null,
-        2,
-        4,
+        null,
+        1,
+        3,
+        0,
+        null,
         3,
         null,
+        null,
+        null,
+        1,
+        1,
+        0,
+        null,
         1,
         null,
         null,
         null,
-        2,
-        2,
-        0,
-        null,
-        2,
-        null,
-        null,
-        null,
-        2,
-        4,
-        0,
-        null,
+        1,
+        5,
         4,
         null,
         null,
-        null,
-        2,
-        2,
-        0,
-        null,
-        2,
-        null,
-        null,
-        null,
-        2,
-        7,
-        6,
-        null,
-        null,
-        2,
+        1,
         1,
         1,
         null,
         null,
-        2,
         1,
         1,
+        1,
         null,
         null,
-        2,
+        1,
         null,
-        2,
-        26,
+        1,
+        14,
         null,
         null,
         null
@@ -1435,41 +1506,99 @@
         "class User < ApplicationRecord",
         "  # Include default devise modules. Others available are:",
         "  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable",
-        "  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable",
+        "  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :lockable",
         "",
         "  belongs_to :facility, optional: true",
         "  has_many :claims, dependent: :destroy",
         "  has_many :items, through: :claims",
         "",
-        "  enum :role, {general: 0, staff: 1}",
+        "  enum :role, {general: 0, staff: 1}, default: :general",
         "  #ensure staff have facility_id, general users have no facility_id",
         "  validates :name, presence: true",
+        "  validates :name, length: { maximum: 50 }",
+        "  validates :name, uniqueness: { case_sensitive: true }, on: :create",
         "  validates :facility_id, presence: true, if: :staff?",
         "  validates :facility_id, absence: true, if: :general?",
+        "  validate :password_has_three_character_types, if: -> { password.present? }",
+        "",
+        "  def unauthenticated_message",
+        "    message = super",
+        "    return message unless message == :locked && locked_at",
+        "",
+        "    remaining_seconds = (self.class.unlock_in - (Time.current - locked_at)).ceil",
+        "    return message unless remaining_seconds.positive?",
+        "",
+        "    minutes, seconds = remaining_seconds.divmod(60)",
+        "    I18n.t(\"devise.failure.locked_with_time\", minutes:, seconds:)",
+        "  end",
+        "",
+        "  private",
+        "",
+        "  def password_has_three_character_types",
+        "    character_types = [",
+        "      password.match?(/[A-Z]/),",
+        "      password.match?(/[a-z]/),",
+        "      password.match?(/[0-9]/),",
+        "      password.match?(/[^A-Za-z0-9\\s]/)",
+        "    ]",
+        "",
+        "    return if character_types.count(true) >= 3",
+        "",
+        "    errors.add(:password, \"must include at least three of uppercase letters, lowercase letters, numbers, and symbols\")",
+        "  end",
         "end"
       ],
       "lines": [
-        2,
+        1,
         null,
         null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        1,
         2,
         null,
-        2,
-        2,
-        2,
+        1,
+        0,
+        0,
         null,
-        2,
+        0,
+        0,
         null,
-        2,
-        2,
-        2,
+        0,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        0,
+        null,
         null
       ],
-      "lines_covered_percent": 100.0,
-      "covered_lines": 9,
-      "missed_lines": 0,
-      "omitted_lines": 6,
-      "total_lines": 9
+      "lines_covered_percent": 70.83333333333333,
+      "covered_lines": 17,
+      "missed_lines": 7,
+      "omitted_lines": 20,
+      "total_lines": 24
     }
   },
   "groups": {
@@ -1489,34 +1618,36 @@
     },
     "Controllers": {
       "lines": {
-        "covered": 102,
-        "missed": 115,
-        "omitted": 226,
-        "total": 217,
-        "percent": 47.004608294930875,
-        "strength": 1.327188940092166
+        "covered": 88,
+        "missed": 140,
+        "omitted": 234,
+        "total": 228,
+        "percent": 38.59649122807018,
+        "strength": 0.6447368421052632
       },
       "files": [
         "app/controllers/application_controller.rb",
         "app/controllers/claims_controller.rb",
         "app/controllers/facilities_controller.rb",
+        "app/controllers/home_controller.rb",
         "app/controllers/items_controller.rb",
         "app/controllers/users_controller.rb"
       ]
     },
     "Helpers": {
       "lines": {
-        "covered": 5,
+        "covered": 6,
         "missed": 0,
-        "omitted": 5,
-        "total": 5,
+        "omitted": 6,
+        "total": 6,
         "percent": 100.0,
-        "strength": 2.0
+        "strength": 1.0
       },
       "files": [
         "app/helpers/application_helper.rb",
         "app/helpers/claims_helper.rb",
         "app/helpers/facilities_helper.rb",
+        "app/helpers/home_helper.rb",
         "app/helpers/items_helper.rb",
         "app/helpers/users_helper.rb"
       ]
@@ -1549,12 +1680,12 @@
     },
     "Models": {
       "lines": {
-        "covered": 78,
-        "missed": 5,
-        "omitted": 62,
-        "total": 83,
-        "percent": 93.97590361445783,
-        "strength": 2.4216867469879517
+        "covered": 87,
+        "missed": 14,
+        "omitted": 77,
+        "total": 101,
+        "percent": 86.13861386138613,
+        "strength": 1.2277227722772277
       },
       "files": [
         "app/models/application_record.rb",
@@ -4005,18 +4136,18 @@
       }
     },
     {
-      "created_at": "2026-11-24T17:52:16Z",
+      "created_at": "2026-11-24T19:04:19Z",
       "branch": "main",
-      "commit": "f3baeb3845c83d9ebb18d4c0bd980953d7aff070",
+      "commit": "de3118bb38b0c9091183c55e42c4412d30e9c662",
       "totals": {
-        "line": 59.1
+        "line": 52.94
       },
       "groups": {
         "Channels": {
           "line": 0.0
         },
         "Controllers": {
-          "line": 47.0
+          "line": 38.59
         },
         "Helpers": {
           "line": 100.0
@@ -4028,7 +4159,7 @@
           "line": 0.0
         },
         "Models": {
-          "line": 93.97
+          "line": 87.75
         }
       },
       "files": {
@@ -4039,16 +4170,19 @@
           "line": 0.0
         },
         "app/controllers/application_controller.rb": {
-          "line": 92.3
+          "line": 76.92
         },
         "app/controllers/claims_controller.rb": {
-          "line": 73.19
+          "line": 61.85
         },
         "app/controllers/facilities_controller.rb": {
           "line": 0.0
         },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0
+        },
         "app/controllers/items_controller.rb": {
-          "line": 47.5
+          "line": 36.73
         },
         "app/controllers/users_controller.rb": {
           "line": 0.0
@@ -4060,6 +4194,9 @@
           "line": 100.0
         },
         "app/helpers/facilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
           "line": 100.0
         },
         "app/helpers/items_helper.rb": {
@@ -4087,7 +4224,286 @@
           "line": 92.3
         },
         "app/models/user.rb": {
+          "line": 70.83
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-24T19:04:35Z",
+      "branch": "main",
+      "commit": "de3118bb38b0c9091183c55e42c4412d30e9c662",
+      "totals": {
+        "line": 56.76
+      },
+      "groups": {
+        "Channels": {
+          "line": 0.0
+        },
+        "Controllers": {
+          "line": 44.29
+        },
+        "Helpers": {
           "line": 100.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 87.75
+        }
+      },
+      "files": {
+        "app/channels/application_cable/channel.rb": {
+          "line": 0.0
+        },
+        "app/channels/application_cable/connection.rb": {
+          "line": 0.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 92.3
+        },
+        "app/controllers/claims_controller.rb": {
+          "line": 73.19
+        },
+        "app/controllers/facilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/items_controller.rb": {
+          "line": 36.73
+        },
+        "app/controllers/users_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/claims_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/facilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/items_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/users_helper.rb": {
+          "line": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/claim.rb": {
+          "line": 92.85
+        },
+        "app/models/facility.rb": {
+          "line": 100.0
+        },
+        "app/models/item.rb": {
+          "line": 92.3
+        },
+        "app/models/user.rb": {
+          "line": 70.83
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-24T19:12:09Z",
+      "branch": "main",
+      "commit": "de3118bb38b0c9091183c55e42c4412d30e9c662",
+      "totals": {
+        "line": 56.76
+      },
+      "groups": {
+        "Channels": {
+          "line": 0.0
+        },
+        "Controllers": {
+          "line": 44.29
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 87.75
+        }
+      },
+      "files": {
+        "app/channels/application_cable/channel.rb": {
+          "line": 0.0
+        },
+        "app/channels/application_cable/connection.rb": {
+          "line": 0.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 92.3
+        },
+        "app/controllers/claims_controller.rb": {
+          "line": 73.19
+        },
+        "app/controllers/facilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/items_controller.rb": {
+          "line": 36.73
+        },
+        "app/controllers/users_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/claims_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/facilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/items_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/users_helper.rb": {
+          "line": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 100.0
+        },
+        "app/models/claim.rb": {
+          "line": 92.85
+        },
+        "app/models/facility.rb": {
+          "line": 100.0
+        },
+        "app/models/item.rb": {
+          "line": 92.3
+        },
+        "app/models/user.rb": {
+          "line": 70.83
+        }
+      }
+    },
+    {
+      "created_at": "2026-11-24T19:31:57Z",
+      "branch": "main",
+      "commit": "de3118bb38b0c9091183c55e42c4412d30e9c662",
+      "totals": {
+        "line": 52.76
+      },
+      "groups": {
+        "Channels": {
+          "line": 0.0
+        },
+        "Controllers": {
+          "line": 38.59
+        },
+        "Helpers": {
+          "line": 100.0
+        },
+        "Jobs": {
+          "line": 0.0
+        },
+        "Mailers": {
+          "line": 0.0
+        },
+        "Models": {
+          "line": 86.13
+        }
+      },
+      "files": {
+        "app/channels/application_cable/channel.rb": {
+          "line": 0.0
+        },
+        "app/channels/application_cable/connection.rb": {
+          "line": 0.0
+        },
+        "app/controllers/application_controller.rb": {
+          "line": 76.92
+        },
+        "app/controllers/claims_controller.rb": {
+          "line": 61.85
+        },
+        "app/controllers/facilities_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/home_controller.rb": {
+          "line": 0.0
+        },
+        "app/controllers/items_controller.rb": {
+          "line": 36.73
+        },
+        "app/controllers/users_controller.rb": {
+          "line": 0.0
+        },
+        "app/helpers/application_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/claims_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/facilities_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/home_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/items_helper.rb": {
+          "line": 100.0
+        },
+        "app/helpers/users_helper.rb": {
+          "line": 100.0
+        },
+        "app/jobs/application_job.rb": {
+          "line": 0.0
+        },
+        "app/mailers/application_mailer.rb": {
+          "line": 0.0
+        },
+        "app/models/application_record.rb": {
+          "line": 60.0
+        },
+        "app/models/claim.rb": {
+          "line": 92.85
+        },
+        "app/models/facility.rb": {
+          "line": 100.0
+        },
+        "app/models/item.rb": {
+          "line": 92.3
+        },
+        "app/models/user.rb": {
+          "line": 70.83
         }
       }
     }

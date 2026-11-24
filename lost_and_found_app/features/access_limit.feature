@@ -14,7 +14,7 @@ Feature: Access limit
     Given a pending claim on "Blue Hoodie" by "user1@example.com"
     And I am logged in as "user2@example.com"
     When I try to claim "Blue Hoodie"
-    Then I should be redirected to the item page
+    Then I should be redirected to the items page
     And I should see that the item cannot be claimed
     And item "Blue Hoodie" should have status "claim_pending"
 
