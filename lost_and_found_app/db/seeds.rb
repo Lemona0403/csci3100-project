@@ -165,3 +165,22 @@ end
 
 puts "Created #{Item.count} items"
 puts "Statuses: available=#{Item.available.count}, claim_pending=#{Item.claim_pending.count}, claimed=#{Item.claimed.count}"
+
+general_user = User.find_by!(email: "user1@example.com")
+
+Item.where(status: [:claim_pending, :claimed]).find_each do |item|
+  claim = Claim.find_or_initialize_by(item: item, user: general_user)
+  claim.facility = item.facility
+  claim.contact_info = "12345678"
+  claim.message = "Seeded claim for #{item.title}"
+  claim.status =
+    if item.claimed?
+      :approved
+    else
+      :pending
+    end
+  claim.save!(validate: false)
+end
+
+puts "Created #{Claim.count} claims for #{general_user.email}"
+puts "Claim statuses: pending=#{Claim.pending.count}, approved=#{Claim.approved.count}"
