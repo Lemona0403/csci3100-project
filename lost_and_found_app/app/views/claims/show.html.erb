@@ -1,8 +1,17 @@
 <%= render @claim %>
 
 <div>
-  <%= link_to "Edit this claim", edit_claim_path(@claim) %> |
   <%= link_to "Back to claims", claims_path %>
 
-  <%= button_to "Destroy this claim", @claim, method: :delete %>
+  <% if current_user.staff? %>
+    <% if @claim.pending? %>
+      <%= button_to "Approve claim", claim_path(@claim), method: :patch,
+                    params: { claim: { status: "approved" } } %>
+      <%= button_to "Reject claim", claim_path(@claim), method: :patch,
+                    params: { claim: { status: "rejected" } } %>
+    <% end %>
+
+    <%= link_to "Edit this claim", edit_claim_path(@claim) %>
+    <%= button_to "Destroy this claim", @claim, method: :delete %>
+  <% end %>
 </div>

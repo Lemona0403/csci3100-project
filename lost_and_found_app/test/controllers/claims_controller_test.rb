@@ -12,11 +12,13 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
+    @claim.item.update!(status: :available)
     get new_item_claim_url(@claim.item)
     assert_response :success
   end
 
   test "should create claim" do
+    @claim.item.update!(status: :available)
     assert_difference("Claim.count") do
       post item_claims_url(@claim.item), params: { claim: { contact_info: @claim.contact_info, message: @claim.message, status: @claim.status } }
     end
@@ -27,6 +29,24 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
   test "should show claim" do
     get claim_url(@claim)
     assert_response :success
+  end
+
+  test "general users do not see claim management controls" do
+    get claim_url(@claim)
+
+    assert_response :success
+    assert_no_match(/Edit this claim|Destroy this claim|Approve claim|Reject claim/, response.body)
+  end
+
+  test "staff can review a pending claim" do
+    sign_in users(:staff)
+    get claim_url(@claim)
+
+    assert_response :success
+    assert_includes response.body, "Approve claim"
+    assert_includes response.body, "Reject claim"
+    assert_includes response.body, "Edit this claim"
+    assert_includes response.body, "Destroy this claim"
   end
 
   test "should get edit" do
