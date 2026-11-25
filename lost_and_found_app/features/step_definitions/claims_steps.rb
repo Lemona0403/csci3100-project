@@ -34,14 +34,35 @@ When (/^I approve the claim for "(.*)"$/) do |title|
   item = Item.find_by!(title: title)
   claim = item.claims.where(status: :pending).order(:id).last!
   visit claim_path(claim)
-  click_button "Approve"
+  expect(page).to have_button("Approve claim")
+  expect(page).to have_button("Reject claim")
+  click_button "Approve claim"
 end
 
 When (/^I reject the claim for "(.*)"$/) do |title|
   item = Item.find_by!(title: title)
   claim = item.claims.where(status: :pending).order(:id).last!
   visit claim_path(claim)
-  click_button "Reject"
+  expect(page).to have_button("Approve claim")
+  expect(page).to have_button("Reject claim")
+  click_button "Reject claim"
+end
+
+When (/^I view the claim for "(.*)"$/) do |title|
+  item = Item.find_by!(title: title)
+  claim = item.claims.where(status: :pending).order(:id).last!
+  visit claim_path(claim)
+end
+
+Then (/^I should see claim status "(.*)"$/) do |status|
+  expect(page).to have_content(status.humanize)
+end
+
+Then (/^I should not see claim review controls$/) do
+  expect(page).not_to have_button("Approve claim")
+  expect(page).not_to have_button("Reject claim")
+  expect(page).not_to have_link("Edit this claim")
+  expect(page).not_to have_button("Destroy this claim")
 end
 
 Then (/^a claim for "(.*)" should have status "(.*)"$/) do |title, status|

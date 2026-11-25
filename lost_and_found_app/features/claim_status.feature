@@ -9,7 +9,14 @@ Feature: How claim status is changed together with item status
     Given I am logged in as "user1@example.com"
     When I claim item "Blue Hoodie" with contact "12345678"
     Then the claim for "Blue Hoodie" should have status "pending"
+    And I should see claim status "pending"
     And item "Blue Hoodie" should have status "claim_pending"
+
+  Scenario: General users cannot see claim review controls
+    Given a pending claim on "Blue Hoodie" by "user1@example.com"
+    And I am logged in as "user1@example.com"
+    When I view the claim for "Blue Hoodie"
+    Then I should not see claim review controls
 
   Scenario: User tries to submit a claim for item that are claim_pending or claimed
     Given a pending claim on "Blue Hoodie" by "user1@example.com"
@@ -23,12 +30,14 @@ Feature: How claim status is changed together with item status
     Given a pending claim on "Blue Hoodie" by "user1@example.com"
     And I am logged in as "staff.ulib@example.com"
     When I approve the claim for "Blue Hoodie"
-    Then the claim for "Blue Hoodie" should have status "approved"
+    Then I should see claim status "approved"
+    And the claim for "Blue Hoodie" should have status "approved"
     And item "Blue Hoodie" should have status "claimed"
 
   Scenario: Staff rejects a claim
     Given a pending claim on "Blue Hoodie" by "user1@example.com"
     And I am logged in as "staff.ulib@example.com"
     When I reject the claim for "Blue Hoodie"
-    Then the claim for "Blue Hoodie" should have status "rejected"
+    Then I should see claim status "rejected"
+    And the claim for "Blue Hoodie" should have status "rejected"
     And item "Blue Hoodie" should have status "available"
