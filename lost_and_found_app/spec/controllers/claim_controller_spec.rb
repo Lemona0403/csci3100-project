@@ -1,14 +1,16 @@
 require "rails_helper"
 
 RSpec.describe ClaimsController, type: :controller do
-  fixtures :users
   describe "Access limit of claim" do
     it "cannot see other users' claims" do
-      item = create(:item, status: :available)
+      facility = create(:facility)
+      user1 = create(:user, :general)
+      user2 = create(:user, :general)
+      item = create(:item, status: :available, facility: facility)
       item.update_column(:status, Item.statuses[:claim_pending])
-      user1_claim = create(:claim, item: item, user: users(:user1), facility: item.facility)
+      user1_claim = create(:claim, item: item, user: user1, facility: facility)
 
-      sign_in users(:user2)
+      sign_in user2
       get :index
       expect(response).to have_http_status(:ok)
       expect(assigns(:claims)).not_to include(user1_claim)
@@ -19,7 +21,7 @@ RSpec.describe ClaimsController, type: :controller do
   describe "Create claims" do
     it "calls submit_claim! on the item" do
       item = create(:item, status: :available)
-      sign_in users(:user1)
+      sign_in create(:user, :general)
 
       allow(Item).to receive(:find).and_return(item)
       expect(item).to receive(:submit_claim!)
@@ -32,7 +34,7 @@ RSpec.describe ClaimsController, type: :controller do
 
     it "creates pending claim and sets item to claim_pending" do
       item = create(:item, status: :available)
-      sign_in users(:user1)
+      sign_in create(:user, :general)
 
       expect {
         post :create, params: {
@@ -49,7 +51,7 @@ RSpec.describe ClaimsController, type: :controller do
     it "blocks claiming non-available items" do
       item = create(:item, status: :available)
       item.submit_claim!
-      sign_in users(:user1)
+      sign_in create(:user, :general)
 
       expect {
         post :create, params: {
@@ -65,12 +67,12 @@ RSpec.describe ClaimsController, type: :controller do
 
   describe "Staff changes status of claim" do
     it "sets claim to approved & item to claimed when staff approve" do
-      staff = users(:staff)
+      staff = create(:user, :staff)
       item = build(:item, status: :claim_pending, facility: staff.facility)
       item.save!(validate: false)
-      claim = create(:claim, item: item, user: users(:user1),facility: item.facility, 
+      claim = create(:claim, item: item, user: create(:user, :general), facility: item.facility,
       status: :pending)
-      sign_in users(:staff)
+      sign_in staff
 
       patch :update, params: { id: claim.id, claim: { status: "approved" } }
       expect(claim.reload).to be_approved
@@ -79,10 +81,10 @@ RSpec.describe ClaimsController, type: :controller do
     end
 
     it "sets claim to rejected & item to available when staff reject" do
-      staff = users(:staff)
+      staff = create(:user, :staff)
       item = build(:item, status: :claim_pending, facility: staff.facility)
       item.save!(validate: false)
-      claim = create(:claim, item: item, user: users(:user1), facility: item.facility,
+      claim = create(:claim, item: item, user: create(:user, :general), facility: item.facility,
       status: :pending)
       sign_in staff
 

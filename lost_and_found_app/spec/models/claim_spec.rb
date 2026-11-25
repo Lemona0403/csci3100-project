@@ -1,8 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Claim, type: :model do
-  fixtures :facilities
-
   it "cannot create claims with non-pending status" do
     claim1 = build(:claim, status: :approved)
     expect(claim1).not_to be_valid
@@ -12,7 +10,7 @@ RSpec.describe Claim, type: :model do
   end
 
   it "rolls back claim if item transition fails" do
-    facility = facilities(:library)
+    facility = create(:facility)
     item = create(:item, facility: facility,status: :available)
     user = create(:user, :general)
     allow(item).to receive(:submit_claim!).and_raise("error")
