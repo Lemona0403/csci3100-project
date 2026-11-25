@@ -1,5 +1,22 @@
 <h1><%= current_user.staff? ? "Facility claims" : "My claims" %></h1>
 
+<%= form_with url: claims_path, method: :get do |form| %>
+  <div>
+    <%= form.label :query, "Search by item name" %>
+    <%= form.search_field :query, value: params[:query] %>
+  </div>
+
+  <div>
+    <%= form.label :status %>
+    <%= form.select :status,
+                    Claim.statuses.keys.map { |status| [status.humanize, status] },
+                    { include_blank: "All statuses", selected: params[:status] } %>
+  </div>
+
+  <%= form.submit "Search" %>
+  <%= link_to "Clear filters", claims_path %>
+<% end %>
+
 <div id="claims">
   <% @claims.each do |claim| %>
     <%= render claim %>
@@ -8,5 +25,9 @@
     </p>
   <% end %>
 </div>
+
+<% if @claims.empty? %>
+  <p>No claims match your filters.</p>
+<% end %>
 
 <%= link_to "Browse items to claim", items_path %>

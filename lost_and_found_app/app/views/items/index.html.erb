@@ -1,5 +1,37 @@
 <h1>Items</h1>
 
+<%= form_with url: items_path, method: :get do |form| %>
+  <div>
+    <%= form.label :query, "Search title or description" %>
+    <%= form.search_field :query, value: params[:query] %>
+  </div>
+
+  <div>
+    <%= form.label :category %>
+    <%= form.select :category,
+                    Item.categories.keys.map { |category| [category.humanize, category] },
+                    { include_blank: "All categories", selected: params[:category] } %>
+  </div>
+
+  <% if current_user.staff? %>
+    <div>
+      <%= form.label :status %>
+      <%= form.select :status,
+                      Item.statuses.keys.map { |status| [status.humanize, status] },
+                      { include_blank: "All statuses", selected: params[:status] } %>
+    </div>
+  <% else %>
+    <div>
+      <%= form.label :facility_id, "Facility" %>
+      <%= form.collection_select :facility_id, Facility.order(:name), :id, :name,
+                                 { include_blank: "All facilities", selected: params[:facility_id] } %>
+    </div>
+  <% end %>
+
+  <%= form.submit "Search" %>
+  <%= link_to "Clear filters", items_path %>
+<% end %>
+
 <div id="items">
   <% @items.each do |item| %>
     <%= render item %>
@@ -8,6 +40,10 @@
     </p>
   <% end %>
 </div>
+
+<% if @items.empty? %>
+  <p>No items match your filters.</p>
+<% end %>
 
 <% if user_signed_in? && current_user.staff? %>
   <%= link_to "New item", new_item_path %>

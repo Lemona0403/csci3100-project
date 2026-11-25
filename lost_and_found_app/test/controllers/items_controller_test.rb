@@ -11,6 +11,35 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "staff can search items and filter by category and status" do
+    get items_url, params: {
+      query: "Test item one",
+      category: "water_bottle",
+      status: "claim_pending"
+    }
+
+    assert_response :success
+    assert_includes response.body, "Test item one"
+    assert_not_includes response.body, "Test item two"
+    assert_select "input[name='query'][value='Test item one']"
+    assert_select "select[name='category']"
+    assert_select "select[name='status']"
+  end
+
+  test "general users can filter available items by facility and category" do
+    sign_out :user
+    sign_in users(:one)
+    @item.update!(status: :available)
+
+    get items_url, params: { facility_id: @item.facility_id, category: "water_bottle" }
+
+    assert_response :success
+    assert_select "select[name='facility_id']"
+    assert_select "select[name='category']"
+    assert_select "select[name='status']", count: 0
+    assert_includes response.body, "Test item one"
+  end
+
   test "should redirect to sign in when logged out" do
     sign_out :user
 

@@ -11,6 +11,16 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "users can search their claims by item name and status" do
+    get claims_url, params: { query: "Test item one", status: "pending" }
+
+    assert_response :success
+    assert_includes response.body, "Test item one"
+    assert_not_includes response.body, "Test item two"
+    assert_select "input[name='query'][value='Test item one']"
+    assert_select "select[name='status']"
+  end
+
   test "should get new" do
     @claim.item.update!(status: :available)
     get new_item_claim_url(@claim.item)
