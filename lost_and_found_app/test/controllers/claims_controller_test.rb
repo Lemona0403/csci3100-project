@@ -13,6 +13,7 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
     assert_select "select[name='sort'] option[selected='selected'][value='latest']"
     assert_select "input[name='submitted_from'][type='date']"
     assert_select "input[name='submitted_to'][type='date']"
+    assert_select "a", text: "Browse items to claim", count: 0
   end
 
   test "users can search their claims by item name and status" do
