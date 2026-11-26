@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  ITEMS_PER_PAGE = 10
+
   before_action :require_login
   before_action :set_item, only: %i[ show edit update destroy ]
   before_action :require_staff, only: %i[ new edit create update destroy ]
@@ -20,6 +22,15 @@ class ItemsController < ApplicationController
                    .by_facility(params[:facility_id])
                    .by_category(params[:category])
     end
+
+    @sort = params[:sort] == "oldest" ? "oldest" : "newest"
+    sort_direction = @sort == "oldest" ? :asc : :desc
+    @items = @items.order(date_found: sort_direction, id: sort_direction)
+    @total_pages = (@items.count.to_f / ITEMS_PER_PAGE).ceil
+    @current_page = params[:page].to_s.to_i
+    @current_page = 1 unless @current_page.positive?
+    @current_page = [@current_page, [@total_pages, 1].max].min
+    @items = @items.limit(ITEMS_PER_PAGE).offset((@current_page - 1) * ITEMS_PER_PAGE)
   end
 
   # GET /items/1 or /items/1.json

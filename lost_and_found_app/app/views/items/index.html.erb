@@ -13,6 +13,13 @@
                     { include_blank: "All categories", selected: params[:category] } %>
   </div>
 
+  <div>
+    <%= form.label :sort, "Date found" %>
+    <%= form.select :sort,
+                    [["Newest first", "newest"], ["Oldest first", "oldest"]],
+                    { selected: @sort } %>
+  </div>
+
   <% if current_user.staff? %>
     <div>
       <%= form.label :status %>
@@ -43,6 +50,31 @@
 
 <% if @items.empty? %>
   <p>No items match your filters.</p>
+<% end %>
+
+<% if @total_pages > 1 %>
+  <nav aria-label="Item pages">
+    <% if @current_page > 1 %>
+      <%= link_to "Previous",
+                  items_path(request.query_parameters.except("page").merge(page: @current_page - 1)) %>
+    <% end %>
+
+    <span>Page <%= @current_page %> of <%= @total_pages %></span>
+
+    <% if @current_page < @total_pages %>
+      <%= link_to "Next",
+                  items_path(request.query_parameters.except("page").merge(page: @current_page + 1)) %>
+    <% end %>
+
+    <%= form_with url: items_path, method: :get do |form| %>
+      <% request.query_parameters.except("page").each do |key, value| %>
+        <%= hidden_field_tag key, value %>
+      <% end %>
+      <%= form.label :page, "Go to page" %>
+      <%= form.number_field :page, in: 1..@total_pages, value: @current_page %>
+      <%= form.submit "Go" %>
+    <% end %>
+  </nav>
 <% end %>
 
 <% if user_signed_in? && current_user.staff? %>

@@ -11,6 +11,47 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "paginates filtered items ten per page and preserves filters" do
+    12.times do |index|
+      Item.create!(
+        title: "Pagination item #{index + 1}",
+        description: "Pagination test",
+        category: :clothing,
+        status: :available,
+        date_found: Time.current,
+        facility: @item.facility
+      )
+    end
+
+    filters = {
+      query: "Pagination item",
+      category: "clothing",
+      status: "available",
+      sort: "oldest"
+    }
+    get items_url, params: filters
+
+    assert_response :success
+    assert_select "#items > div", count: 10
+    next_link = css_select("nav[aria-label='Item pages'] a").find { |link| link.text == "Next" }
+    assert next_link
+    assert_includes next_link["href"], "query=Pagination"
+    assert_includes next_link["href"], "category=clothing"
+    assert_includes next_link["href"], "status=available"
+    assert_includes next_link["href"], "sort=oldest"
+    assert_includes next_link["href"], "page=2"
+    assert_select "nav[aria-label='Item pages'] input[type='number'][name='page'][value='1'][min='1'][max='2']"
+    assert_select "nav[aria-label='Item pages'] input[type='hidden'][name='query'][value='Pagination item']"
+    assert_select "nav[aria-label='Item pages'] input[type='hidden'][name='sort'][value='oldest']"
+
+    get items_url, params: filters.merge(page: 2)
+
+    assert_response :success
+    assert_select "#items > div", count: 2
+    assert_select "nav[aria-label='Item pages'] span", text: "Page 2 of 2"
+    assert_select "nav[aria-label='Item pages'] input[type='number'][name='page'][value='2']"
+  end
+
   test "staff can search items and filter by category and status" do
     get items_url, params: {
       query: "Test item one",
@@ -24,6 +65,39 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_select "input[name='query'][value='Test item one']"
     assert_select "select[name='category']"
     assert_select "select[name='status']"
+    assert_select "select[name='sort'] option[selected='selected'][value='newest']"
+  end
+
+  test "items default to newest date found and can be sorted oldest first" do
+    oldest = Item.create!(
+      title: "Sort item oldest",
+      description: "Older item",
+      category: :clothing,
+      status: :available,
+      date_found: 1.day.ago,
+      facility: @item.facility
+    )
+    newest = Item.create!(
+      title: "Sort item newest",
+      description: "Newer item",
+      category: :clothing,
+      status: :available,
+      date_found: Time.current,
+      facility: @item.facility
+    )
+
+    get items_url, params: { query: "Sort item" }
+
+    assert_response :success
+    assert_equal ["item_#{newest.id}", "item_#{oldest.id}"],
+                 css_select("#items > div").map { |element| element["id"] }
+
+    get items_url, params: { query: "Sort item", sort: "oldest" }
+
+    assert_response :success
+    assert_equal ["item_#{oldest.id}", "item_#{newest.id}"],
+                 css_select("#items > div").map { |element| element["id"] }
+    assert_select "select[name='sort'] option[selected='selected'][value='oldest']"
   end
 
   test "general users can filter available items by facility and category" do
