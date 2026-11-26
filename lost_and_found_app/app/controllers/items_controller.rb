@@ -23,6 +23,21 @@ class ItemsController < ApplicationController
                    .by_category(params[:category])
     end
 
+    @date_from = parse_filter_date(params[:date_from])
+    @date_to = parse_filter_date(params[:date_to])
+
+    if params[:date_from].present? && @date_from.nil?
+      @date_filter_error = "Enter a valid start date."
+    elsif params[:date_to].present? && @date_to.nil?
+      @date_filter_error = "Enter a valid end date."
+    elsif @date_from && @date_to && @date_from > @date_to
+      @date_filter_error = "Start date must be on or before end date."
+    else
+      @items = @items.where("date_found >= ?", @date_from.beginning_of_day) if @date_from
+      @items = @items.where("date_found <= ?", @date_to.end_of_day) if @date_to
+    end
+    @items = @items.none if @date_filter_error
+
     @sort = params[:sort] == "oldest" ? "oldest" : "newest"
     sort_direction = @sort == "oldest" ? :asc : :desc
     @items = @items.order(date_found: sort_direction, id: sort_direction)
@@ -104,6 +119,15 @@ class ItemsController < ApplicationController
   end
 
   private
+    def parse_filter_date(value)
+      return if value.blank?
+      return unless value.is_a?(String) && value.match?(/\A\d{4}-\d{2}-\d{2}\z/)
+
+      Date.iso8601(value)
+    rescue ArgumentError
+      nil
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_item
       @item = Item.find(params[:id])

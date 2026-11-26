@@ -23,11 +23,14 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
       )
     end
 
+    today = Date.current.iso8601
     filters = {
       query: "Pagination item",
       category: "clothing",
       status: "available",
-      sort: "oldest"
+      sort: "oldest",
+      date_from: today,
+      date_to: today
     }
     get items_url, params: filters
 
@@ -39,10 +42,13 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_includes next_link["href"], "category=clothing"
     assert_includes next_link["href"], "status=available"
     assert_includes next_link["href"], "sort=oldest"
+    assert_includes next_link["href"], "date_from=#{today}"
+    assert_includes next_link["href"], "date_to=#{today}"
     assert_includes next_link["href"], "page=2"
     assert_select "nav[aria-label='Item pages'] input[type='number'][name='page'][value='1'][min='1'][max='2']"
     assert_select "nav[aria-label='Item pages'] input[type='hidden'][name='query'][value='Pagination item']"
     assert_select "nav[aria-label='Item pages'] input[type='hidden'][name='sort'][value='oldest']"
+    assert_select "nav[aria-label='Item pages'] input[type='hidden'][name='date_from'][value='#{today}']"
 
     get items_url, params: filters.merge(page: 2)
 
@@ -66,6 +72,43 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_select "select[name='category']"
     assert_select "select[name='status']"
     assert_select "select[name='sort'] option[selected='selected'][value='newest']"
+    assert_select "input[name='date_from'][type='date']"
+    assert_select "input[name='date_to'][type='date']"
+  end
+
+  test "filters items by inclusive date-found range" do
+    before_range = create_item("Date range before", Time.zone.local(2026, 3, 9, 23, 59, 59))
+    start_boundary = create_item("Date range start", Time.zone.local(2026, 3, 10, 0, 0, 0))
+    end_boundary = create_item("Date range end", Time.zone.local(2026, 3, 11, 23, 59, 59))
+    after_range = create_item("Date range after", Time.zone.local(2026, 3, 12, 0, 0, 0))
+
+    get items_url, params: {
+      query: "Date range",
+      date_from: "2026-03-10",
+      date_to: "2026-03-11"
+    }
+
+    assert_response :success
+    assert_includes response.body, start_boundary.title
+    assert_includes response.body, end_boundary.title
+    assert_not_includes response.body, before_range.title
+    assert_not_includes response.body, after_range.title
+    assert_select "input[name='date_from'][value='2026-03-10']"
+    assert_select "input[name='date_to'][value='2026-03-11']"
+  end
+
+  test "rejects an invalid date range without showing unfiltered items" do
+    create_item("Date range test", Time.current)
+
+    get items_url, params: {
+      query: "Date range",
+      date_from: "2026-03-12",
+      date_to: "2026-03-10"
+    }
+
+    assert_response :success
+    assert_select "#items > div", count: 0
+    assert_includes response.body, "Start date must be on or before end date."
   end
 
   test "items default to newest date found and can be sorted oldest first" do
@@ -158,5 +201,18 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to items_url
+  end
+
+  private
+
+  def create_item(title, date_found)
+    Item.create!(
+      title: title,
+      description: "Date range test",
+      category: :clothing,
+      status: :available,
+      date_found: date_found,
+      facility: @item.facility
+    )
   end
 end

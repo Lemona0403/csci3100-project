@@ -20,6 +20,16 @@
                     { selected: @sort } %>
   </div>
 
+  <div>
+    <%= form.label :date_from, "Found from" %>
+    <%= form.date_field :date_from, value: params[:date_from] %>
+  </div>
+
+  <div>
+    <%= form.label :date_to, "Found to" %>
+    <%= form.date_field :date_to, value: params[:date_to] %>
+  </div>
+
   <% if current_user.staff? %>
     <div>
       <%= form.label :status %>
@@ -37,6 +47,10 @@
 
   <%= form.submit "Search" %>
   <%= link_to "Clear filters", items_path %>
+<% end %>
+
+<% if @date_filter_error.present? %>
+  <p class="alert"><%= @date_filter_error %></p>
 <% end %>
 
 <div id="items">
