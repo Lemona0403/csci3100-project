@@ -1,4 +1,6 @@
 class ClaimsController < ApplicationController
+  CLAIMS_PER_PAGE = 10
+
   before_action :set_item, only: %i[ new create ]
   before_action :set_claim, only: %i[ show edit update destroy ]
   before_action :require_login
@@ -9,11 +11,39 @@ class ClaimsController < ApplicationController
   # GET /claims or /claims.json
   def index
     if current_user.staff?
-      @claims = Claim.where(facility_id: current_user.facility_id).pending_first
+      @claims = Claim.where(facility_id: current_user.facility_id)
     else
       @claims = Claim.where(user_id: current_user.id) 
     end
     @claims = @claims.search(params[:query]).by_status(params[:status])
+
+    @sort = params[:sort] == "earliest" ? "earliest" : "latest"
+    sort_direction = @sort == "earliest" ? :asc : :desc
+    if current_user.staff?
+      @claims = @claims.reorder(status: :asc, created_at: sort_direction, id: sort_direction)
+    else
+      @claims = @claims.reorder(created_at: sort_direction, id: sort_direction)
+    end
+
+    @submitted_from = parse_filter_date(params[:submitted_from])
+    @submitted_to = parse_filter_date(params[:submitted_to])
+    if params[:submitted_from].present? && @submitted_from.nil?
+      @submitted_date_filter_error = "Enter a valid submitted start date."
+    elsif params[:submitted_to].present? && @submitted_to.nil?
+      @submitted_date_filter_error = "Enter a valid submitted end date."
+    elsif @submitted_from && @submitted_to && @submitted_from > @submitted_to
+      @submitted_date_filter_error = "Submitted start date must be on or before end date."
+    else
+      @claims = @claims.where("claims.created_at >= ?", @submitted_from.beginning_of_day) if @submitted_from
+      @claims = @claims.where("claims.created_at <= ?", @submitted_to.end_of_day) if @submitted_to
+    end
+    @claims = @claims.none if @submitted_date_filter_error
+
+    @total_pages = (@claims.count.to_f / CLAIMS_PER_PAGE).ceil
+    @current_page = params[:page].to_s.to_i
+    @current_page = 1 unless @current_page.positive?
+    @current_page = [@current_page, [@total_pages, 1].max].min
+    @claims = @claims.limit(CLAIMS_PER_PAGE).offset((@current_page - 1) * CLAIMS_PER_PAGE)
   end
 
   # GET /claims/1 or /claims/1.json

@@ -30,8 +30,6 @@ class Claim < ApplicationRecord
     end
   }
 
-  scope :pending_first, -> { order(:status, created_at: :desc) }
-
   def approve!
     raise "The claim has been approved or rejected" unless pending?
     update!(status: :approved)

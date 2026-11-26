@@ -13,8 +13,29 @@
                     { include_blank: "All statuses", selected: params[:status] } %>
   </div>
 
+  <div>
+    <%= form.label :sort, "Submitted time" %>
+    <%= form.select :sort,
+                    [["Latest first", "latest"], ["Earliest first", "earliest"]],
+                    { selected: @sort } %>
+  </div>
+
+  <div>
+    <%= form.label :submitted_from, "Submitted from" %>
+    <%= form.date_field :submitted_from, value: params[:submitted_from] %>
+  </div>
+
+  <div>
+    <%= form.label :submitted_to, "Submitted to" %>
+    <%= form.date_field :submitted_to, value: params[:submitted_to] %>
+  </div>
+
   <%= form.submit "Search" %>
   <%= link_to "Clear filters", claims_path %>
+<% end %>
+
+<% if @submitted_date_filter_error %>
+  <p role="alert"><%= @submitted_date_filter_error %></p>
 <% end %>
 
 <div id="claims">
@@ -28,6 +49,31 @@
 
 <% if @claims.empty? %>
   <p>No claims match your filters.</p>
+<% end %>
+
+<% if @total_pages > 1 %>
+  <nav aria-label="Claim pages">
+    <% if @current_page > 1 %>
+      <%= link_to "Previous",
+                  claims_path(request.query_parameters.except("page").merge(page: @current_page - 1)) %>
+    <% end %>
+
+    <span>Page <%= @current_page %> of <%= @total_pages %></span>
+
+    <% if @current_page < @total_pages %>
+      <%= link_to "Next",
+                  claims_path(request.query_parameters.except("page").merge(page: @current_page + 1)) %>
+    <% end %>
+
+    <%= form_with url: claims_path, method: :get do |form| %>
+      <% request.query_parameters.except("page").each do |key, value| %>
+        <%= hidden_field_tag key, value %>
+      <% end %>
+      <%= form.label :page, "Go to page" %>
+      <%= form.number_field :page, in: 1..@total_pages, value: @current_page %>
+      <%= form.submit "Go" %>
+    <% end %>
+  </nav>
 <% end %>
 
 <%= link_to "Browse items to claim", items_path %>

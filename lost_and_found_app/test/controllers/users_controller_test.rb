@@ -26,6 +26,32 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                   text: "Show password"
   end
 
+  test "remember me creates a persistent login cookie" do
+    post user_session_url, params: {
+      user: { email: @user.email, password: "password", remember_me: "1" }
+    }
+
+    assert_response :redirect
+    assert_not_nil @user.reload.remember_created_at
+    assert response.cookies["remember_user_token"].present?
+    remember_cookie_header = Array(response.headers["Set-Cookie"]).find do |cookie|
+      cookie.start_with?("remember_user_token=")
+    end
+    assert_match(/expires=/i, remember_cookie_header)
+  end
+
+  test "signing out invalidates the remember me token" do
+    post user_session_url, params: {
+      user: { email: @user.email, password: "password", remember_me: "1" }
+    }
+    assert_not_nil @user.reload.remember_created_at
+
+    delete destroy_user_session_url
+
+    assert_response :redirect
+    assert_nil @user.reload.remember_created_at
+  end
+
   test "locks account after five failed sign in attempts" do
     5.times do
       post user_session_url, params: {
