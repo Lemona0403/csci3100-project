@@ -10,6 +10,18 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Users"
   end
 
+  test "login password visibility can be toggled" do
+    visit new_user_session_url
+
+    assert_selector "input#user_password[type='password']"
+    click_button "Show password"
+    assert_selector "input#user_password[type='text']"
+    assert_button "Hide password"
+
+    click_button "Hide password"
+    assert_selector "input#user_password[type='password']"
+  end
+
   test "should create user" do
     visit users_url
     click_on "New user"

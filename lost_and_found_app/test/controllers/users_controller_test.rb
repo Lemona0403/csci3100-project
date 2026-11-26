@@ -17,6 +17,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "login page includes password visibility toggle" do
+    get new_user_session_url
+
+    assert_response :success
+    assert_select "input#user_password[type='password'][autocomplete='current-password']"
+    assert_select "button[type='button'][data-action='password-visibility#toggle'][aria-pressed='false']",
+                  text: "Show password"
+  end
+
   test "locks account after five failed sign in attempts" do
     5.times do
       post user_session_url, params: {
