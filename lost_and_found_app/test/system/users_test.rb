@@ -23,36 +23,34 @@ class UsersTest < ApplicationSystemTestCase
   end
 
   test "should create user" do
-    visit users_url
-    click_on "New user"
+    visit new_user_registration_url
 
-    fill_in "Email", with: @user.email
-    fill_in "Name", with: @user.name
-    fill_in "Password", with: @user.password
-    fill_in "Role", with: @user.role
-    click_on "Create User"
+    fill_in "Email", with: "system-created@example.com"
+    fill_in "Name", with: "System Created User"
+    select "General", from: "Role"
+    fill_in "Password", with: "Password123!"
+    fill_in "Password confirmation", with: "Password123!"
+    click_button "Sign up"
 
-    assert_text "User was successfully created"
-    click_on "Back"
+    assert_text "Signed in as System Created User"
   end
 
   test "should update User" do
+    sign_in_as(users(:staff))
     visit user_url(@user)
     click_on "Edit this user", match: :first
 
-    fill_in "Email", with: @user.email
-    fill_in "Name", with: @user.name
-    fill_in "Password", with: @user.password
-    fill_in "Role", with: @user.role
+    fill_in "Password", with: "NewPassword123!"
+    fill_in "Name", with: "Updated Test User"
     click_on "Update User"
 
     assert_text "User was successfully updated"
-    click_on "Back"
   end
 
   test "should destroy User" do
+    sign_in_as(users(:staff))
     visit user_url(@user)
-    click_on "Destroy this user", match: :first
+    click_button "Destroy this user"
 
     assert_text "User was successfully destroyed"
   end
