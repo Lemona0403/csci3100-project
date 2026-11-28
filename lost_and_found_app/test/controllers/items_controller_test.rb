@@ -8,7 +8,9 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should get index" do
     get items_url
+
     assert_response :success
+    assert_select "a", text: "New item", count: 1
   end
 
   test "paginates filtered items ten per page and preserves filters" do

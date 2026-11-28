@@ -90,7 +90,3 @@
     <% end %>
   </nav>
 <% end %>
-
-<% if user_signed_in? && current_user.staff? %>
-  <%= link_to "New item", new_item_path %>
-<% end %>
