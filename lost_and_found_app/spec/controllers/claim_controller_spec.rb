@@ -94,4 +94,22 @@ RSpec.describe ClaimsController, type: :controller do
       expect(response).to redirect_to(claim_path(claim))
     end
   end
+
+  describe "Destroy claims" do
+    it "returns the item to available when its pending claim is destroyed" do
+      staff = create(:user, :staff)
+      item = create(:item, status: :available, facility: staff.facility)
+      item.submit_claim!
+      claim = create(:claim, item: item, user: create(:user, :general),
+                     facility: item.facility, status: :pending)
+      sign_in staff
+
+      expect {
+        delete :destroy, params: { id: claim.id }
+      }.to change(Claim, :count).by(-1)
+
+      expect(item.reload).to be_available
+      expect(response).to redirect_to(claims_path)
+    end
+  end
 end

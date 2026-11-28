@@ -58,11 +58,19 @@ class Item < ApplicationRecord
   end
 
   def reject_claim!
-    raise "The item is not under claim-pending" unless claim_pending?
-    update!(status: :available)
+    make_available_after_claim!
+  end
+
+  def cancel_claim!
+    make_available_after_claim!
   end
 
   private 
+
+  def make_available_after_claim!
+    raise "The item is not under claim-pending" unless claim_pending?
+    update!(status: :available)
+  end
 
   def status_must_be_available_when_created
     errors.add(:status, "must be available when created") unless available?

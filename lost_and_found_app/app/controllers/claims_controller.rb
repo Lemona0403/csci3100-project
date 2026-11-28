@@ -173,7 +173,14 @@ class ClaimsController < ApplicationController
 
   # DELETE /claims/1 or /claims/1.json
   def destroy
-    @claim.destroy!
+    ActiveRecord::Base.transaction do
+      item = @claim.item
+      if @claim.pending? && item.claim_pending? &&
+         !item.claims.pending.where.not(id: @claim.id).exists?
+        item.cancel_claim!
+      end
+      @claim.destroy!
+    end
 
     respond_to do |format|
       format.html { redirect_to claims_path, notice: "Claim was successfully destroyed.", status: :see_other }
