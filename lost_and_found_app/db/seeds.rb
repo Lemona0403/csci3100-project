@@ -161,6 +161,12 @@ items_data.each do |data|
   item.status      = data[:status]
   item.date_found  = Time.zone.parse(data[:date_found])
   item.save!(validate: false)
+  unless item.photo.attached?
+    path = Rails.root.join("db/images/sample.png")
+    File.open(path, "rb") do |file|
+      item.photo.attach(io: file, filename: "sample.png", content_type: "image/png")
+    end
+  end
 end
 
 puts "Created #{Item.count} items"

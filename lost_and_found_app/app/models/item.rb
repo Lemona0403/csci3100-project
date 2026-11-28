@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :facility
   has_many :claims, dependent: :destroy
   has_many :users, through: :claims
+  has_one_attached :photo
 
   enum :category, {clothing: 0, water_bottle: 1, electronic_device: 2, ID_card: 3, others: 4}
   enum :status, {available: 0, claim_pending: 1, claimed: 2}
@@ -12,6 +13,7 @@ class Item < ApplicationRecord
   validates :status, presence: true
   #validate for custom-method
   validate :status_must_be_available_when_created, on: :create
+  validate :valid_photo
 
   scope :search, ->(query) {
     if query.blank?
@@ -64,6 +66,13 @@ class Item < ApplicationRecord
 
   def status_must_be_available_when_created
     errors.add(:status, "must be available when created") unless available?
+  end
+
+  def valid_photo
+    return unless photo.attached?
+    errors.add(:photo, "must be a JPEG/PNG/WebP") unless 
+    photo.content_type.in?(%w[image/jpeg image/png image/webp])
+    errors.add(:photo, "is too large") if photo.byte_size > 5.megabytes
   end
 
 end
