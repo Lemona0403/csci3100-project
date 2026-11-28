@@ -1,7 +1,11 @@
 <div id="<%= dom_id claim %>">
   <p>
     <strong>Item:</strong>
-    <%= link_to claim.item.title, item_path(claim.item) %>
+    <% if local_assigns.fetch(:link_to_item, true) %>
+      <%= link_to claim.item.title, item_path(claim.item) %>
+    <% else %>
+      <%= claim.item.title %>
+    <% end %>
   </p>
 
   <p>

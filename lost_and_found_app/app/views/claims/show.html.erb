@@ -1,4 +1,7 @@
-<%= render @claim %>
+<%= render partial: "claim", locals: { claim: @claim, link_to_item: false } %>
+
+<h2>Item information</h2>
+<%= render @claim.item %>
 
 <div>
   <%= link_to "Back to claims", claims_path %>

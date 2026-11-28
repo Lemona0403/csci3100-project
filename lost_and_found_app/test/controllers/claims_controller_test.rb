@@ -158,6 +158,9 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
   test "should show claim" do
     get claim_url(@claim)
     assert_response :success
+    assert_select "a[href=?]", item_path(@claim.item), count: 0
+    assert_includes response.body, "Test description"
+    assert_includes response.body, "Water bottle"
   end
 
   test "general users do not see claim management controls" do

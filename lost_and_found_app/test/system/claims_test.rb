@@ -39,5 +39,7 @@ class ClaimsTest < ApplicationSystemTestCase
     assert_button "Reject claim"
     assert_no_link "Edit this claim"
     assert_no_button "Destroy this claim"
+    assert_text "Test description"
+    assert_text "Water bottle"
   end
 end
