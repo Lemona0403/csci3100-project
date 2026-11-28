@@ -1,7 +1,7 @@
-Given (/^a pending claim on "(.*)" by "(.*)"$/) do |title, email|
+Given (/^(?:a|an) (pending|approved|rejected) claim on "(.*)" by "(.*)"$/) do |status, title, email|
   item = Item.find_by!(title: title)
   user = User.find_by!(email: email)
-  item.status = :claim_pending
+  item.status = { "pending" => :claim_pending, "approved" => :claimed, "rejected" => :available }.fetch(status)
   item.save!(validate: false)
 
   claim = Claim.find_or_initialize_by(item: item, user: user)
@@ -10,6 +10,7 @@ Given (/^a pending claim on "(.*)" by "(.*)"$/) do |title, email|
   claim.contact_info = "12345678"
   claim.message = "I would like to claim it"
   claim.save!
+  claim.update!(status: status) unless status == "pending"
 end
 
 When (/^I claim item "(.*)" with contact "(.*)"$/) do |title, contact|
@@ -79,6 +80,16 @@ end
 
 When (/^I visit the claims page$/) do
   visit claims_path
+end
+
+When (/^I filter claims by "(pending|approved|rejected)"$/) do |status|
+  select status.humanize, from: "Status"
+  click_button "Search"
+end
+
+Then (/^the claim status filter should default to pending$/) do
+  expect(page).to have_select("Status", selected: "Pending")
+  expect(page.find_field("Status").all("option").map(&:text)).to eq(%w[Pending Approved Rejected])
 end
 
 Then (/^I should see a claim for "(.*)"$/) do |title|

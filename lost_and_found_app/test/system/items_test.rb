@@ -1,4 +1,6 @@
 require "application_system_test_case"
+require "base64"
+require "tempfile"
 
 class ItemsTest < ApplicationSystemTestCase
   setup do
@@ -23,9 +25,19 @@ class ItemsTest < ApplicationSystemTestCase
       "document.getElementById('item_date_found').value = arguments[0]",
       @item.date_found.strftime("%Y-%m-%dT%H:%M")
     )
-    click_on "Create Item"
 
-    assert_text "Item was successfully created"
+    Tempfile.create(["system-test-photo", ".png"]) do |photo|
+      photo.binmode
+      photo.write(Base64.decode64("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jz8cAAAAASUVORK5CYII="))
+      photo.flush
+      attach_file "Photo", photo.path
+
+      assert_selector "img[alt='Selected photo preview']"
+      click_on "Create Item"
+
+      assert_text "Item was successfully created"
+      assert_selector "img[alt='Photo of System test item']"
+    end
   end
 
   test "should update Item" do

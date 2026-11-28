@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.item-photo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.photo-preview {
+  margin-top: 1rem;
+}

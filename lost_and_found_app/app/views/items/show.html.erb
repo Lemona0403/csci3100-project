@@ -1,5 +1,9 @@
 <%= render @item %>
 
+<% if @item.photo.attached? %>
+  <%= image_tag @item.photo, alt: "Photo of #{@item.title}", class: "item-photo" %>
+<% end %>
+
 <div>
   <%= link_to "Back to items", items_path %>
 

@@ -24,3 +24,12 @@ end
 Then (/^I should not see item "(.*)"$/) do |title|
   expect(page).not_to have_content(title)
 end
+
+Then (/^I should see item information for "(.*)"$/) do |title|
+  item = Item.find_by!(title: title)
+  expect(page).to have_content("Item information")
+  expect(page).to have_content(item.title)
+  expect(page).to have_content(item.description)
+  expect(page).to have_content(item.category.humanize)
+  expect(page).not_to have_link(item.title, href: item_path(item))
+end
