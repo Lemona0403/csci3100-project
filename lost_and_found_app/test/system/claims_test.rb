@@ -13,8 +13,15 @@ class ClaimsTest < ApplicationSystemTestCase
 
   test "should create claim" do
     sign_in_as(users(:one))
-    @claim.item.update!(status: :available)
-    visit item_url(@claim.item)
+    item = Item.create!(
+      title: "System test claim item",
+      description: "Created for a system claim",
+      category: :clothing,
+      status: :available,
+      date_found: Time.current,
+      facility: @claim.facility
+    )
+    visit item_url(item)
     click_on "Claim this item"
 
     fill_in "Contact info", with: "system-test@example.com"
@@ -24,23 +31,13 @@ class ClaimsTest < ApplicationSystemTestCase
     assert_text "Claim was successfully created"
   end
 
-  test "should update Claim" do
+  test "staff can review claims without edit or destroy controls" do
     sign_in_as(users(:staff))
     visit claim_url(@claim)
-    click_on "Edit this claim", match: :first
 
-    fill_in "Contact info", with: "updated-system-test@example.com"
-    fill_in "Message", with: "Updated claim message"
-    click_on "Update Claim"
-
-    assert_text "Claim was successfully updated"
-  end
-
-  test "should destroy Claim" do
-    sign_in_as(users(:staff))
-    visit claim_url(@claim)
-    click_button "Destroy this claim"
-
-    assert_text "Claim was successfully destroyed"
+    assert_button "Approve claim"
+    assert_button "Reject claim"
+    assert_no_link "Edit this claim"
+    assert_no_button "Destroy this claim"
   end
 end

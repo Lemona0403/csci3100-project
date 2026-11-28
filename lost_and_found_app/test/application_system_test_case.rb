@@ -27,7 +27,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     visit new_user_session_path
     fill_in "Email", with: user.email
     fill_in "Password", with: "password"
-    click_button "Log in"
+    find_field("Password").send_keys(:enter)
     assert_text "Signed in as #{user.name}"
   end
 end

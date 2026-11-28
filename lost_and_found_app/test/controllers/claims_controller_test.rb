@@ -147,9 +147,9 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create claim" do
-    @claim.item.update!(status: :available)
+    item = create_available_item
     assert_difference("Claim.count") do
-      post item_claims_url(@claim.item), params: { claim: { contact_info: @claim.contact_info, message: @claim.message, status: @claim.status } }
+      post item_claims_url(item), params: { claim: { contact_info: @claim.contact_info, message: @claim.message, status: @claim.status } }
     end
 
     assert_redirected_to claim_url(Claim.last)
@@ -174,14 +174,14 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_includes response.body, "Approve claim"
     assert_includes response.body, "Reject claim"
-    assert_includes response.body, "Edit this claim"
-    assert_includes response.body, "Destroy this claim"
+    assert_no_match(/Edit this claim|Destroy this claim/, response.body)
   end
 
   test "should get edit" do
     sign_in users(:staff)
     get edit_claim_url(@claim)
-    assert_response :success
+    assert_redirected_to claim_url(@claim)
+    assert_equal "You cannot edit this claim", flash[:alert]
   end
 
   test "should update claim" do
@@ -201,13 +201,24 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
 
   private
 
+  def create_available_item(title: "Test item one")
+    Item.create!(
+      title: title,
+      description: "Created for a claim controller test",
+      category: :clothing,
+      status: :available,
+      date_found: Time.current,
+      facility: @claim.facility
+    )
+  end
+
   def create_claim(submitted_at:)
     claim = Claim.create!(
       contact_info: "submitted-date@example.com",
       message: "Submitted date test",
       facility: @claim.facility,
       user: users(:one),
-      item: @claim.item,
+      item: create_available_item,
       status: :pending
     )
     claim.update_column(:created_at, submitted_at)
