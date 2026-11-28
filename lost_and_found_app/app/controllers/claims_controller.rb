@@ -4,7 +4,6 @@ class ClaimsController < ApplicationController
   before_action :set_item, only: %i[ new create ]
   before_action :set_claim, only: %i[ show edit update destroy ]
   before_action :require_login
-  before_action :require_staff, only: %i[ edit update destroy ]
   #lamdba function to check claim have the same id with the staff
   before_action -> { ensure_same_facility(@claim) }, only: %i[ edit update destroy ]
 
@@ -74,6 +73,11 @@ class ClaimsController < ApplicationController
 
   # GET /claims/1/edit
   def edit
+    respond_to do |format|
+        format.html { redirect_to claim_path(@claim), alert: "You cannot edit this claim" }
+        format.json { render json: { error: "You cannot edit this claim" }, 
+                      status: :unprocessable_content }
+      end
   end
 
   # POST /claims or /claims.json
