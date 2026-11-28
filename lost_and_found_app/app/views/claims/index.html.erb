@@ -10,7 +10,7 @@
     <%= form.label :status %>
     <%= form.select :status,
                     Claim.statuses.keys.map { |status| [status.humanize, status] },
-                    { include_blank: "All statuses", selected: params[:status] } %>
+                    { selected: @status } %>
   </div>
 
   <div>

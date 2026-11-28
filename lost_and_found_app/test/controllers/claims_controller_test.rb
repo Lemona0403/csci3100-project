@@ -10,10 +10,32 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
     get claims_url
 
     assert_response :success
+    assert_select "select[name='status'] option", count: 3
+    assert_select "select[name='status'] option[selected='selected'][value='pending']"
     assert_select "select[name='sort'] option[selected='selected'][value='latest']"
     assert_select "input[name='submitted_from'][type='date']"
     assert_select "input[name='submitted_to'][type='date']"
     assert_select "a", text: "Browse items to claim", count: 0
+  end
+
+  test "my claims defaults to pending and allows approved or rejected filters" do
+    completed_claim = create_claim(submitted_at: Time.zone.local(2026, 3, 10, 12))
+    completed_claim.update!(status: :approved)
+
+    get claims_url
+
+    assert_response :success
+    assert_equal ["claim_#{@claim.id}"], css_select("#claims > div").map { |element| element["id"] }
+
+    get claims_url, params: { status: "approved" }
+
+    assert_response :success
+    assert_equal ["claim_#{completed_claim.id}"], css_select("#claims > div").map { |element| element["id"] }
+
+    get claims_url, params: { status: "rejected" }
+
+    assert_response :success
+    assert_empty css_select("#claims > div")
   end
 
   test "users can search their claims by item name and status" do
@@ -24,6 +46,20 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
     assert_not_includes response.body, "Test item two"
     assert_select "input[name='query'][value='Test item one']"
     assert_select "select[name='status']"
+  end
+
+  test "facility claims default to pending without an all statuses option" do
+    sign_in users(:staff)
+    approved_claim = create_claim(submitted_at: Time.zone.local(2026, 3, 10, 12))
+    approved_claim.update!(status: :approved)
+
+    get claims_url
+
+    assert_response :success
+    assert_select "select[name='status'] option", count: 3
+    assert_select "select[name='status'] option[selected='selected'][value='pending']"
+    assert_equal ["claim_#{claims(:one).id}", "claim_#{claims(:two).id}"],
+                 css_select("#claims > div").map { |element| element["id"] }
   end
 
   test "paginates filtered claims ten per page and preserves filters" do
@@ -75,7 +111,7 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
     assert_select "nav[aria-label='Claim pages'] span", text: "Page 2 of 2"
   end
 
-  test "claims default to latest submission and can be sorted earliest within pending-first staff groups" do
+  test "staff can sort pending claims by submission time" do
     sign_in users(:staff)
     pending_old = claims(:one)
     pending_new = claims(:two)
@@ -84,16 +120,16 @@ class ClaimsControllerTest < ActionDispatch::IntegrationTest
     pending_old.update_column(:created_at, Time.zone.local(2026, 3, 10, 12))
     pending_new.update_column(:created_at, Time.zone.local(2026, 3, 11, 12))
 
-    get claims_url
+    get claims_url, params: { status: "pending" }
 
     assert_response :success
-    assert_equal ["claim_#{pending_new.id}", "claim_#{pending_old.id}", "claim_#{approved_new.id}"],
+    assert_equal ["claim_#{pending_new.id}", "claim_#{pending_old.id}"],
                  css_select("#claims > div").map { |element| element["id"] }
 
-    get claims_url, params: { sort: "earliest" }
+    get claims_url, params: { status: "pending", sort: "earliest" }
 
     assert_response :success
-    assert_equal ["claim_#{pending_old.id}", "claim_#{pending_new.id}", "claim_#{approved_new.id}"],
+    assert_equal ["claim_#{pending_old.id}", "claim_#{pending_new.id}"],
                  css_select("#claims > div").map { |element| element["id"] }
     assert_select "select[name='sort'] option[selected='selected'][value='earliest']"
   end

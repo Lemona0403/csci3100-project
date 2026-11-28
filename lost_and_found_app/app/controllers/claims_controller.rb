@@ -14,7 +14,9 @@ class ClaimsController < ApplicationController
     else
       @claims = Claim.where(user_id: current_user.id) 
     end
-    @claims = @claims.search(params[:query]).by_status(params[:status])
+    @status = params[:status].presence
+    @status = "pending" unless Claim.statuses.key?(@status)
+    @claims = @claims.search(params[:query]).by_status(@status)
 
     @sort = params[:sort] == "earliest" ? "earliest" : "latest"
     sort_direction = @sort == "earliest" ? :asc : :desc
