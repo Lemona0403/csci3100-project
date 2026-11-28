@@ -1,4 +1,5 @@
 require "test_helper"
+require "warden/test/helpers"
 require "capybara/selenium/driver_specializations/chrome_driver"
 
 # Chrome 158 rejects Capybara's wildcard origin when resetting the browser.
@@ -19,15 +20,21 @@ module ClearChromeStorageWithoutWildcardOrigin
 end
 
 Capybara::Selenium::Driver::ChromeDriver.prepend(ClearChromeStorageWithoutWildcardOrigin)
+Warden.test_mode!
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+  include Warden::Test::Helpers
 
   def sign_in_as(user)
-    visit new_user_session_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "password"
-    find_field("Password").send_keys(:enter)
+    login_as(user, scope: :user)
+    visit root_path
     assert_text "Signed in as #{user.name}"
+  end
+
+  def teardown
+    super
+  ensure
+    Warden.test_reset!
   end
 end

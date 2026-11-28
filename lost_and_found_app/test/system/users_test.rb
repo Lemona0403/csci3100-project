@@ -22,6 +22,15 @@ class UsersTest < ApplicationSystemTestCase
     assert_selector "input#user_password[type='password']"
   end
 
+  test "should log in" do
+    visit new_user_session_url
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: "password"
+    click_button "Log in"
+
+    assert_text "Signed in as #{@user.name}"
+  end
+
   test "should create user" do
     visit new_user_registration_url
 
